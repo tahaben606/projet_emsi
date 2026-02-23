@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// EMSI Flow - Academic Risk Detection & Knowledge Assistant System
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Core Academic Models
+model Student {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  avatar    String?
+  classId   String
+  class     Class    @relation(fields: [classId], references: [id])
+  grades    Grade[]
+  attendance Attendance[]
+  riskAlerts RiskAlert[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Class {
+  id          String     @id @default(cuid())
+  name        String
+  code        String     @unique
+  department  String
+  year        Int
+  students    Student[]
+  subjects    Subject[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Subject {
+  id          String   @id @default(cuid())
+  name        String
+  code        String
+  classId     String
+  class       Class    @relation(fields: [classId], references: [id])
+  coefficient Float    @default(1.0)
+  grades      Grade[]
+  attendance  Attendance[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Grade {
+  id         String   @id @default(cuid())
+  studentId  String
+  student    Student  @relation(fields: [studentId], references: [id])
+  subjectId  String
+  subject    Subject  @relation(fields: [subjectId], references: [id])
+  value      Float
+  maxValue   Float    @default(20.0)
+  type       String   // "exam", "quiz", "assignment", "project"
+  date       DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  subjectId String
+  subject   Subject  @relation(fields: [subjectId], references: [id])
+  date      DateTime
+  status    String   // "present", "absent", "late", "excused"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([studentId, subjectId, date])
+}
+
+// Knowledge Base for RAG
+model KnowledgeDocument {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  category  String   // "policy", "academic", "resources", "deadlines", "general"
+  tags      String   // JSON array of tags
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Risk Alerts & Tracking
+model RiskAlert {
+  id              String   @id @default(cuid())
+  studentId       String
+  student         Student  @relation(fields: [studentId], references: [id])
+  riskScore       Float
+  riskLevel       String   // "LOW", "MEDIUM", "HIGH"
+  factors         String   // JSON array of contributing factors
+  recommendations String   // JSON array of recommendations
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// System Settings
+model SystemSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// News & Announcements System
+model News {
+  id             String   @id @default(cuid())
+  title          String
+  content        String
+  type           String   // "exam", "deadline", "announcement", "event", "alert", "general"
+  priority       String   @default("normal") // "urgent", "high", "normal", "low"
+  targetAudience String   @default("all")    // "all", "class", "students"
+  targetClassIds String?  // JSON array of class IDs for targeted news
+  targetStudentIds String? // JSON array of specific student IDs (optional)
+  eventDate      DateTime? // For events/exams - the actual date
+  expiresAt      DateTime? // When this news item expires
+  isPublished    Boolean  @default(true)
+  authorName     String?  // Admin who posted
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
