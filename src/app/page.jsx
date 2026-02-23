@@ -394,7 +394,7 @@ function AdminDashboard() {
   const [news, setNews] = useState([])
   const [classes, setClasses] = useState([])
   const [newsLoading, setNewsLoading] = useState(false)
-  
+
   // News form state
   const [showNewsForm, setShowNewsForm] = useState(false)
   const [newsForm, setNewsForm] = useState({
@@ -406,7 +406,7 @@ function AdminDashboard() {
     targetClassIds: [],
     eventDate: ''
   })
-  
+
   // Attendance state
   const [attendanceClassId, setAttendanceClassId] = useState('')
   const [attendanceDate, setAttendanceDate] = useState(new Date().toISOString().split('T')[0])
@@ -972,10 +972,13 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-600 rounded-lg"><GraduationCap className="h-6 w-6 text-white" /></div>
+              <div className="flex items-center">
+                <img src="/navlogo.png" alt="EMSI Logo" className="h-10 w-auto object-contain" />
+              </div>
+              <div className="h-8 w-px bg-gray-200 mx-2 hidden sm:block"></div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">EMSI Flow</h1>
-                <p className="text-xs text-muted-foreground">Système de Détection des Risques Académiques</p>
+                <h1 className="text-xl font-bold text-gray-900 tracking-tight">Academic Flow</h1>
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Risk Detection System</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -999,7 +1002,7 @@ export default function Home() {
 
       <footer className="bg-white border-t mt-auto">
         <div className="container mx-auto px-4 py-4">
-          <p className="text-center text-sm text-muted-foreground">EMSI Flow © 2024 - Système Intelligent de Gestion Académique</p>
+          <p className="text-center text-sm text-muted-foreground">EMSI © 2024 - Système Intelligent de Gestion Académique</p>
         </div>
       </footer>
     </div>

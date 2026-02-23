@@ -7,6 +7,10 @@ const prisma = new PrismaClient();
 const classes = [
   { name: '1ère année GI', code: '1GI', department: 'Génie Informatique', year: 1 },
   { name: '2ème année GI', code: '2GI', department: 'Génie Informatique', year: 2 },
+  { name: '1ère année IA', code: '1IA', department: 'Intelligence Artificielle', year: 1 },
+  { name: '2ème année IA', code: '2IA', department: 'Intelligence Artificielle', year: 2 },
+  { name: '1ère année Cyber', code: '1CYB', department: 'Cybersécurité', year: 1 },
+  { name: '2ème année Cyber', code: '2CYB', department: 'Cybersécurité', year: 2 },
   { name: '1ère année BTS', code: '1BTS', department: 'BTS', year: 1 },
   { name: '2ème année BTS', code: '2BTS', department: 'BTS', year: 2 },
 ];
@@ -18,27 +22,45 @@ const subjects = [
   { name: 'Programmation C', code: 'PRG101', classCode: '1GI', coefficient: 2.5 },
   { name: 'Physique', code: 'PHY101', classCode: '1GI', coefficient: 2 },
   { name: 'Anglais', code: 'ENG101', classCode: '1GI', coefficient: 1.5 },
-  
+
   // 2GI Subjects
   { name: 'Base de données', code: 'DB201', classCode: '2GI', coefficient: 3 },
   { name: 'Programmation Java', code: 'JAVA201', classCode: '2GI', coefficient: 2.5 },
   { name: 'Réseaux', code: 'NET201', classCode: '2GI', coefficient: 2.5 },
   { name: 'Systèmes', code: 'SYS201', classCode: '2GI', coefficient: 2 },
   { name: 'Mathématiques Avancées', code: 'MATH201', classCode: '2GI', coefficient: 2 },
-  
+
+  // 1IA Subjects
+  { name: 'Statistiques', code: 'STAT101', classCode: '1IA', coefficient: 3 },
+  { name: 'Python pour IA', code: 'PYIA101', classCode: '1IA', coefficient: 3 },
+  { name: 'Algèbre Linéaire', code: 'ALG101', classCode: '1IA', coefficient: 2.5 },
+  { name: 'Structures de Données', code: 'STR101', classCode: '1IA', coefficient: 2.5 },
+
+  // 2IA Subjects
+  { name: 'Machine Learning', code: 'ML201', classCode: '2IA', coefficient: 4 },
+  { name: 'Deep Learning', code: 'DL201', classCode: '2IA', coefficient: 4 },
+  { name: 'NLP', code: 'NLP201', classCode: '2IA', coefficient: 3 },
+  { name: 'Computer Vision', code: 'CV201', classCode: '2IA', coefficient: 3 },
+
+  // 1CYB Subjects
+  { name: 'Sécurité des OS', code: 'SEC101', classCode: '1CYB', coefficient: 3 },
+  { name: 'Cryptographie', code: 'CRYP101', classCode: '1CYB', coefficient: 3 },
+  { name: 'Unix Administration', code: 'UNIX101', classCode: '1CYB', coefficient: 2 },
+
+  // 2CYB Subjects
+  { name: 'Pentesting', code: 'PENT201', classCode: '2CYB', coefficient: 4 },
+  { name: 'Forensics', code: 'FOR201', classCode: '2CYB', coefficient: 3 },
+  { name: 'Droit du Numérique', code: 'LAW201', classCode: '2CYB', coefficient: 1 },
+
   // 1BTS Subjects
   { name: 'Développement Web', code: 'WEB101', classCode: '1BTS', coefficient: 3 },
   { name: 'Gestion de Projet', code: 'GP101', classCode: '1BTS', coefficient: 2 },
   { name: 'Base de Données', code: 'DB101', classCode: '1BTS', coefficient: 2.5 },
-  { name: 'Réseaux Informatiques', code: 'NET101', classCode: '1BTS', coefficient: 2 },
-  { name: 'Communication', code: 'COM101', classCode: '1BTS', coefficient: 1.5 },
-  
+
   // 2BTS Subjects
   { name: 'Frameworks Web', code: 'FW201', classCode: '2BTS', coefficient: 3 },
   { name: 'DevOps', code: 'DEVOPS201', classCode: '2BTS', coefficient: 2.5 },
-  { name: 'Mobile Development', code: 'MOB201', classCode: '2BTS', coefficient: 2.5 },
   { name: 'Cybersécurité', code: 'SEC201', classCode: '2BTS', coefficient: 2 },
-  { name: 'Projet Tuteuré', code: 'PROJ201', classCode: '2BTS', coefficient: 3 },
 ];
 
 // Student names (Moroccan names)
@@ -50,7 +72,7 @@ function generateStudent(index: number, classCode: string) {
   const firstName = firstNames[index % firstNames.length];
   const lastName = lastNames[Math.floor(index / firstNames.length) % lastNames.length];
   const studentNumber = String(index + 1).padStart(4, '0');
-  
+
   return {
     name: `${firstName} ${lastName}`,
     email: `student${studentNumber}@emsi.ma`,
@@ -60,17 +82,17 @@ function generateStudent(index: number, classCode: string) {
 
 // Generate grades based on performance profile
 function generateGrades(studentIndex: number, subjectIds: string[], performance: 'high' | 'medium' | 'low' | 'declining') {
-  const grades = [];
+  const grades: any[] = [];
   const now = new Date();
-  
+
   subjectIds.forEach(subjectId => {
     // 2-4 grades per subject
     const numGrades = 2 + Math.floor(Math.random() * 3);
-    
+
     for (let i = 0; i < numGrades; i++) {
       let baseGrade: number;
       const maxValue = Math.random() > 0.3 ? 20 : Math.random() > 0.5 ? 40 : 100;
-      
+
       switch (performance) {
         case 'high':
           baseGrade = 14 + Math.random() * 5; // 14-19
@@ -82,22 +104,22 @@ function generateGrades(studentIndex: number, subjectIds: string[], performance:
           baseGrade = 5 + Math.random() * 5; // 5-10
           break;
         case 'declining':
-          baseGrade = i < numGrades / 2 
+          baseGrade = i < numGrades / 2
             ? 13 + Math.random() * 4  // Good start
             : 7 + Math.random() * 4;   // Declining
           break;
       }
-      
+
       // Add some variance
       const variance = (Math.random() - 0.5) * 4;
       let grade = Math.max(2, Math.min(maxValue - 1, (baseGrade + variance) / 20 * maxValue));
-      
+
       const types = ['exam', 'quiz', 'assignment', 'project'];
       const type = types[Math.floor(Math.random() * types.length)];
-      
+
       const date = new Date(now);
       date.setDate(date.getDate() - (numGrades - i) * 14 - Math.floor(Math.random() * 7));
-      
+
       grades.push({
         subjectId,
         value: Math.round(grade * 10) / 10,
@@ -107,21 +129,21 @@ function generateGrades(studentIndex: number, subjectIds: string[], performance:
       });
     }
   });
-  
+
   return grades;
 }
 
 // Generate attendance based on performance profile
 function generateAttendance(studentIndex: number, subjectIds: string[], performance: 'high' | 'medium' | 'low' | 'declining') {
-  const attendanceRecords = [];
+  const attendanceRecords: any[] = [];
   const now = new Date();
-  
+
   // Generate attendance for past 8 weeks
   for (let week = 0; week < 8; week++) {
     subjectIds.forEach(subjectId => {
       const date = new Date(now);
       date.setDate(date.getDate() - week * 7);
-      
+
       let presentProbability: number;
       switch (performance) {
         case 'high':
@@ -137,7 +159,7 @@ function generateAttendance(studentIndex: number, subjectIds: string[], performa
           presentProbability = week < 4 ? 0.9 : 0.6; // Declining attendance
           break;
       }
-      
+
       const rand = Math.random();
       let status: string;
       if (rand < presentProbability) {
@@ -149,7 +171,7 @@ function generateAttendance(studentIndex: number, subjectIds: string[], performa
       } else {
         status = 'absent';
       }
-      
+
       attendanceRecords.push({
         subjectId,
         date,
@@ -157,13 +179,13 @@ function generateAttendance(studentIndex: number, subjectIds: string[], performa
       });
     });
   }
-  
+
   return attendanceRecords;
 }
 
 async function main() {
   console.log('🌱 Starting database seed...');
-  
+
   // Clean existing data
   await prisma.grade.deleteMany();
   await prisma.attendance.deleteMany();
@@ -173,9 +195,9 @@ async function main() {
   await prisma.class.deleteMany();
   await prisma.knowledgeDocument.deleteMany();
   await prisma.systemSettings.deleteMany();
-  
+
   console.log('✅ Cleaned existing data');
-  
+
   // Create classes
   const classMap: Record<string, string> = {};
   for (const cls of classes) {
@@ -185,7 +207,7 @@ async function main() {
     classMap[cls.code] = created.id;
     console.log(`📚 Created class: ${cls.name}`);
   }
-  
+
   // Create subjects
   const subjectMap: Record<string, string> = {};
   for (const subject of subjects) {
@@ -200,24 +222,24 @@ async function main() {
     subjectMap[subject.code] = created.id;
   }
   console.log(`📖 Created ${subjects.length} subjects`);
-  
-  // Create students with different performance profiles
-  const performances: Array<'high' | 'medium' | 'low' | 'declining'> = 
-    ['high', 'high', 'high', 'medium', 'medium', 'medium', 'medium', 'low', 'low', 'declining'];
-  
+
+  // Create students with different performance profiles (20 students per class)
+  const performances: Array<'high' | 'medium' | 'low' | 'declining'> =
+    ['high', 'high', 'high', 'high', 'high', 'medium', 'medium', 'medium', 'medium', 'medium', 'medium', 'medium', 'low', 'low', 'low', 'low', 'declining', 'declining', 'declining', 'declining'];
+
   let studentCount = 0;
-  const classCodes = ['1GI', '2GI', '1BTS', '2BTS'];
-  
+  const classCodes = ['1GI', '2GI', '1IA', '2IA', '1CYB', '2CYB', '1BTS', '2BTS'];
+
   for (const classCode of classCodes) {
     const classId = classMap[classCode];
     const classSubjects = subjects.filter(s => s.classCode === classCode);
     const subjectIds = classSubjects.map(s => subjectMap[s.code]);
-    
-    // 10 students per class
-    for (let i = 0; i < 10; i++) {
+
+    // 20 students per class
+    for (let i = 0; i < 20; i++) {
       const studentData = generateStudent(studentCount, classCode);
       const performance = performances[i];
-      
+
       const student = await prisma.student.create({
         data: {
           name: studentData.name,
@@ -225,7 +247,7 @@ async function main() {
           classId
         }
       });
-      
+
       // Create grades
       const grades = generateGrades(studentCount, subjectIds, performance);
       for (const grade of grades) {
@@ -240,7 +262,7 @@ async function main() {
           }
         });
       }
-      
+
       // Create attendance
       const attendance = generateAttendance(studentCount, subjectIds, performance);
       for (const att of attendance) {
@@ -257,13 +279,13 @@ async function main() {
           // Skip duplicate dates
         }
       }
-      
+
       studentCount++;
     }
   }
-  
+
   console.log(`👥 Created ${studentCount} students with grades and attendance`);
-  
+
   // Create knowledge documents
   const knowledgeDocs = [
     {
@@ -327,15 +349,59 @@ async function main() {
       tags: JSON.stringify(['conduct', 'integrity', 'plagiarism', 'rules'])
     }
   ];
-  
+
   for (const doc of knowledgeDocs) {
     await prisma.knowledgeDocument.create({
       data: doc
     });
   }
-  
+
   console.log(`📚 Created ${knowledgeDocs.length} knowledge documents`);
-  
+
+  // Create News
+  const newsItems = [
+    {
+      title: 'Examens de Fin de Semestre',
+      content: 'Le calendrier des examens pour le semestre d\'automne est désormais disponible sur le portail étudiant. Veuillez vérifier vos dates et salles.',
+      type: 'exam',
+      priority: 'high',
+      eventDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+    },
+    {
+      title: 'Séminaire sur l\'Intelligence Artificielle',
+      content: 'Rejoignez-nous pour une conférence passionnante sur l\'avenir de l\'IA dans l\'industrie marocaine le 15 mars à l\'amphithéâtre principal.',
+      type: 'event',
+      priority: 'normal',
+      eventDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000)
+    },
+    {
+      title: 'Mise à jour de la Bibliothèque',
+      content: 'De nouveaux ouvrages sur le Cloud Computing et la Cybersécurité sont disponibles dès aujourd\'hui à la bibliothèque.',
+      type: 'general',
+      priority: 'low'
+    },
+    {
+      title: 'Date Limite de Soumission des Projets',
+      content: 'Rappel : La date limite pour soumettre vos rapports de projet tuteuré est fixée au vendredi prochain à minuit sur la plateforme Moodle.',
+      type: 'deadline',
+      priority: 'high',
+      eventDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)
+    },
+    {
+      title: 'Maintenance du Portail Étudiant',
+      content: 'Le portail étudiant sera inaccessible ce dimanche de 02h00 à 06h00 pour une maintenance technique.',
+      type: 'alert',
+      priority: 'normal'
+    },
+  ];
+
+  for (const news of newsItems) {
+    await prisma.news.create({
+      data: news
+    });
+  }
+  console.log(`🆕 Created ${newsItems.length} news items`);
+
   console.log('✅ Database seed completed!');
 }
 

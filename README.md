@@ -1,141 +1,101 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 🎓 EMSI Academic Flow: Bridging the Gap in Academic Success
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
-
-## ✨ Technology Stack
-
-This scaffold provides a robust foundation built with:
-
-### 🎯 Core Framework
-- **⚡ Next.js 16** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
-
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
-
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
-
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Fetch** - Promise-based HTTP request
-
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
-
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
-
-## 🚀 Quick Start
-
-```bash
-# Install dependencies
-bun install
-
-# Start development server
-bun run dev
-
-# Build for production
-bun run build
-
-# Start production server
-bun start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
-
-## 🤖 Powered by Z.ai
-
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
-
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
-```
-
-## 🎨 Available Features & Components
-
-This scaffold includes a comprehensive set of modern web development tools:
-
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
-
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
-
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
-
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Fetch + TanStack Query
-- **State Management**: Simple and scalable with Zustand
-
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+**EMSI Flow** is a sophisticated, AI-powered academic management and risk detection ecosystem. Designed for the modern educational landscape, it combines real-time data analytics with Generative AI to identify students at risk and provide personalized support through a RAG-based (Retrieval-Augmented Generation) Knowledge Assistant.
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+## 🚀 Vision
+In large educational institutions, students often feel like just another number. **EMSI Flow** changes that by empowering administrators with predictive insights and providing students with an intelligent, 24/7 academic companion. We bridge the gap between administrative oversight and student success.
+
+## ✨ Key Features
+
+### 🔍 Academic Risk Detection
+- **Predictive Scoring**: Automatically calculates a student’s "Academic Risk Score" (0-100) based on cross-referenced attendance and performance data.
+- **Dynamic Factors**: Identifies specific contributing factors (e.g., "Declining Attendance in Math", "Recent Grade Drop in Algorithmique").
+- **Proactive Recommendations**: Generates actionable advice for staff to intervene before a student falls behind.
+
+### 🤖 AI Academic Assistant (RAG-Powered)
+- **Instant Knowledge**: Students and faculty can ask complex questions about school policies, exam schedules, and academic resources.
+- **Fact-Based Responses**: Uses Retrieval-Augmented Generation to ensure all AI answers are grounded in official institutional documents.
+- **Contextual Awareness**: The AI understands the specific student's profile to give tailored advice.
+
+### 📊 Administrative Intelligence
+- **Global Dashboard**: Heatmaps of academic risk across different departments and years.
+- **Digital Attendance & News**: Modern, paperless management of student attendance and official announcements.
+- **Insightful Analytics**: Visualizes distribution of risk levels (Low, Medium, High) to help allocate resources effectively.
+
+## 🛠️ Technology Stack
+
+| Component | Technology |
+| :--- | :--- |
+| **Framework** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) |
+| **Styling** | [Tailwind CSS 4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) |
+| **Database/ORM** | [Prisma](https://www.prisma.io/) + SQLite |
+| **AI Capabilities** | [Z.ai SDK](https://chat.z.ai) (Generative AI & RAG) |
+| **Data Viz** | [Recharts](https://recharts.org/) |
+| **State/Query** | [Zustand](https://github.com/pmndrs/zustand) + [TanStack Query](https://tanstack.com/query/latest) |
+| **Animations** | [Framer Motion](https://www.framer.com/motion/) |
+
+---
+
+## 🚦 Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+)
+- [npm](https://www.npmjs.com/) or [bun](https://bun.sh/)
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/tahaben606/projet_emsi.git
+   cd projet_emsi
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env` file in the root:
+   ```env
+   DATABASE_URL="file:./dev.db"
+   NEXTAUTH_SECRET="your-development-secret"
+   NEXTAUTH_URL="http://localhost:3000"
+   ```
+
+4. **Initialize Database**:
+   ```bash
+   npx prisma db push
+   npx prisma db seed
+   ```
+
+5. **Run the Development Server**:
+   ```bash
+   npm run dev
+   # or
+   bun run dev
+   ```
+
+Access the application at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 📂 Project Structure
+```text
+src/
+├── app/          # Next.js Pages & API Routes
+├── components/   # UI Library (shadcn) & Feature Components
+├── services/     # AI & Analytics Business Logic
+├── lib/          # Utilities (Prisma client, UI helpers)
+└── prisma/       # Schema, Migrations & Growth-mode Seed Data
+```
+
+## 👥 Contributors
+Built for the **EMSI Competition** with ❤️ by the development team.
+
+---
+*Empowering education through intelligent data and AI.* 🚀
