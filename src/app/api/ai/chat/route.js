@@ -1,9 +1,9 @@
 // EMSI Flow - AI Chat API Route
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { chatWithAssistant, queryKnowledgeBase } from '@/services/rag-agent';
 
 // POST /api/ai/chat - Chat with RAG knowledge assistant
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const body = await request.json();
     const { message, messages, studentId } = body;

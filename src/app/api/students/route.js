@@ -1,9 +1,9 @@
 // EMSI Flow - Students API Routes
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 
 // GET /api/students - List all students
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const classId = searchParams.get('classId');

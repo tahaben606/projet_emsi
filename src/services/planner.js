@@ -4,23 +4,11 @@
 import ZAI from 'z-ai-web-dev-sdk';
 import { prisma } from '@/lib/db';
 import { calculateStudentRisk } from './risk-engine';
-import { PlannerRecommendation, RiskLevel } from '@/types';
-
-interface StudentContext {
-  studentId: string;
-  name: string;
-  className: string;
-  riskScore: number;
-  riskLevel: RiskLevel;
-  recentGrades: Array<{ subject: string; value: number; maxValue: number; date: Date }>;
-  attendanceRate: number;
-  upcomingEvents: Array<{ title: string; date: string }>;
-}
 
 /**
  * Get student context for planning
  */
-async function getStudentContext(studentId: string): Promise<StudentContext> {
+async function getStudentContext(studentId) {
   const student = await prisma.student.findUnique({
     where: { id: studentId },
     include: {
@@ -74,7 +62,7 @@ async function getStudentContext(studentId: string): Promise<StudentContext> {
 /**
  * Generate AI-powered recommendations
  */
-export async function generateRecommendations(studentId: string): Promise<PlannerRecommendation[]> {
+export async function generateRecommendations(studentId) {
   try {
     const context = await getStudentContext(studentId);
     
@@ -122,7 +110,7 @@ Generate recommendations in this exact JSON format (no markdown, just raw JSON):
     const responseText = completion.choices[0]?.message?.content || '[]';
     
     // Parse JSON from response
-    let recommendations: PlannerRecommendation[] = [];
+    let recommendations = [];
     try {
       // Try to extract JSON array from response
       const jsonMatch = responseText.match(/\[[\s\S]*\]/);
@@ -147,8 +135,8 @@ Generate recommendations in this exact JSON format (no markdown, just raw JSON):
 /**
  * Default recommendations based on risk level
  */
-function getDefaultRecommendations(context: StudentContext): PlannerRecommendation[] {
-  const recommendations: PlannerRecommendation[] = [];
+function getDefaultRecommendations(context) {
+  const recommendations = [];
   
   if (context.riskLevel === 'HIGH') {
     recommendations.push({
@@ -222,11 +210,7 @@ function getDefaultRecommendations(context: StudentContext): PlannerRecommendati
 /**
  * Get a daily summary for the student
  */
-export async function getDailySummary(studentId: string): Promise<{
-  greeting: string;
-  summary: string;
-  focus: string[];
-}> {
+export async function getDailySummary(studentId) {
   try {
     const context = await getStudentContext(studentId);
     

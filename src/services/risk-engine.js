@@ -2,7 +2,6 @@
 // Deterministic, rule-based academic risk calculation
 
 import { prisma } from '@/lib/db';
-import { RiskLevel, RiskCalculation, RiskFactor } from '@/types';
 
 // Risk weights configuration
 const RISK_WEIGHTS = {
@@ -29,7 +28,7 @@ const THRESHOLDS = {
 /**
  * Calculate risk score from a value (0-100 scale, higher = more risk)
  */
-function calculateRiskComponent(value: number, max: number, thresholds: { low: number; medium: number; high: number }): number {
+function calculateRiskComponent(value, max, thresholds) {
   const percentage = (value / max) * 100;
   
   if (percentage >= thresholds.low) return Math.max(0, 30 - (percentage - thresholds.low));
@@ -40,7 +39,7 @@ function calculateRiskComponent(value: number, max: number, thresholds: { low: n
 /**
  * Calculate grade volatility (standard deviation)
  */
-function calculateVolatility(grades: { value: number; maxValue: number }[]): number {
+function calculateVolatility(grades) {
   if (grades.length < 2) return 0;
   
   const normalizedGrades = grades.map(g => (g.value / g.maxValue) * 20);
@@ -56,7 +55,7 @@ function calculateVolatility(grades: { value: number; maxValue: number }[]): num
  * Calculate recent performance trend
  * Returns a value 0-100 where higher = declining/worse trend
  */
-function calculateRecentTrend(grades: { value: number; maxValue: number; date: Date }[]): number {
+function calculateRecentTrend(grades) {
   if (grades.length < 3) return 30; // Not enough data, assume moderate risk
   
   const sortedGrades = [...grades].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -79,7 +78,7 @@ function calculateRecentTrend(grades: { value: number; maxValue: number; date: D
 /**
  * Determine risk level from score
  */
-function getRiskLevel(score: number): RiskLevel {
+function getRiskLevel(score) {
   if (score <= 30) return 'LOW';
   if (score <= 60) return 'MEDIUM';
   return 'HIGH';
@@ -88,8 +87,8 @@ function getRiskLevel(score: number): RiskLevel {
 /**
  * Generate recommendations based on risk factors
  */
-function generateRecommendations(factors: RiskFactor[], riskLevel: RiskLevel): string[] {
-  const recommendations: string[] = [];
+function generateRecommendations(factors, riskLevel) {
+  const recommendations = [];
   
   // Grade-based recommendations
   const gradeFactor = factors.find(f => f.name === 'Grade Average');
@@ -136,7 +135,7 @@ function generateRecommendations(factors: RiskFactor[], riskLevel: RiskLevel): s
 /**
  * Main risk calculation function for a student
  */
-export async function calculateStudentRisk(studentId: string): Promise<RiskCalculation> {
+export async function calculateStudentRisk(studentId) {
   // Fetch student data
   const student = await prisma.student.findUnique({
     where: { id: studentId },
@@ -180,7 +179,7 @@ export async function calculateStudentRisk(studentId: string): Promise<RiskCalcu
   })));
   
   // Build risk factors
-  const factors: RiskFactor[] = [
+  const factors = [
     {
       name: 'Grade Average',
       value: gradeAverage,
@@ -239,7 +238,7 @@ export async function calculateStudentRisk(studentId: string): Promise<RiskCalcu
 /**
  * Calculate risk for all students in a class
  */
-export async function calculateClassRisk(classId: string) {
+export async function calculateClassRisk(classId) {
   const students = await prisma.student.findMany({
     where: { classId }
   });

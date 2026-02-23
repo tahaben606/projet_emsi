@@ -1,5 +1,5 @@
 // EMSI Flow - News API Routes (Admin - CRUD)
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 // Dynamic import to force fresh Prisma client
 async function getPrisma() {
@@ -8,7 +8,7 @@ async function getPrisma() {
 }
 
 // GET /api/news - List all news (admin view)
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     const prisma = await getPrisma();
     const { searchParams } = new URL(request.url);
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST /api/news - Create a new news item
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const prisma = await getPrisma();
     const body = await request.json();

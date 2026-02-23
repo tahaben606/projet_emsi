@@ -1,10 +1,10 @@
 // EMSI Flow - Dashboard Analytics API Routes
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { calculateStudentRisk } from '@/services/risk-engine';
 
 // GET /api/analytics/dashboard - Get overall institutional dashboard data
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     // Get all students with their class info
     const students = await prisma.student.findMany({

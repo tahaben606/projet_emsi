@@ -1,9 +1,9 @@
 // EMSI Flow - AI Recommendations API Route
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { generateRecommendations, getDailySummary } from '@/services/planner';
 
 // POST /api/ai/recommendations - Get context-aware recommendations
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const body = await request.json();
     const { studentId, includeSummary } = body;
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 }
 
 // GET /api/ai/recommendations?studentId=xxx - Get recommendations for a student
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const studentId = searchParams.get('studentId');

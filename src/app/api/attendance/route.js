@@ -1,11 +1,11 @@
 // EMSI Flow - Attendance Management API
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // GET - Fetch attendance by class and date
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const classId = searchParams.get('classId');
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     });
 
     // If date provided, get attendance for that date
-    let attendanceRecords: any[] = [];
+    let attendanceRecords = [];
     if (date) {
       const targetDate = new Date(date);
       const startOfDay = new Date(targetDate);
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
       const endOfDay = new Date(targetDate);
       endOfDay.setHours(23, 59, 59, 999);
 
-      const whereClause: any = {
+      const whereClause = {
         date: {
           gte: startOfDay,
           lte: endOfDay
@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST - Mark attendance for students
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const body = await request.json();
     const { classId, date, subjectId, attendanceData } = body;
@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
 }
 
 // PUT - Update single attendance record
-export async function PUT(request: NextRequest) {
+export async function PUT(request) {
   try {
     const body = await request.json();
     const { attendanceId, status } = body;

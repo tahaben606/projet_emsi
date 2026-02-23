@@ -1,9 +1,9 @@
 // EMSI Flow - Classes API Routes
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 
 // GET /api/classes - List all classes with risk summary
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   try {
     const classes = await prisma.class.findMany({
       include: {

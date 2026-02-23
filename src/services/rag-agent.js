@@ -3,7 +3,6 @@
 
 import ZAI from 'z-ai-web-dev-sdk';
 import { PrismaClient } from '@prisma/client';
-import { RAGResponse, Citation } from '@/types';
 
 const prisma = new PrismaClient();
 
@@ -93,7 +92,7 @@ const KNOWLEDGE_CONTENT = `
 /**
  * Fetch active news from database and format for RAG
  */
-async function getNewsContext(): Promise<{ content: string; sources: string[] }> {
+async function getNewsContext() {
   try {
     const now = new Date();
     const news = await prisma.news.findMany({
@@ -140,7 +139,7 @@ async function getNewsContext(): Promise<{ content: string; sources: string[] }>
  * Simple text-based retrieval (simulating vector search)
  * In production, this would use actual embeddings and vector similarity
  */
-function retrieveRelevantContext(query: string, maxChunks: number = 3): { content: string; sources: string[] } {
+function retrieveRelevantContext(query, maxChunks = 3) {
   const sections = KNOWLEDGE_CONTENT.split('\n## ').filter(s => s.trim().length > 0);
   
   // Simple keyword matching for relevance
@@ -204,7 +203,7 @@ function retrieveRelevantContext(query: string, maxChunks: number = 3): { conten
 /**
  * Main RAG query function
  */
-export async function queryKnowledgeBase(question: string): Promise<RAGResponse> {
+export async function queryKnowledgeBase(question) {
   try {
     // Retrieve relevant context from static knowledge
     const { content, sources } = retrieveRelevantContext(question);
@@ -245,7 +244,7 @@ export async function queryKnowledgeBase(question: string): Promise<RAGResponse>
     const answer = completion.choices[0]?.message?.content || 'I apologize, I could not generate a response. Please try again.';
     
     // Create citations from sources
-    const citations: Citation[] = allSources.map(source => ({
+    const citations = allSources.map(source => ({
       source,
       excerpt: `Information from ${source} section of EMSI Academic Handbook`
     }));
@@ -270,7 +269,7 @@ export async function queryKnowledgeBase(question: string): Promise<RAGResponse>
 /**
  * Fallback responses for common questions
  */
-function getFallbackResponse(question: string): string {
+function getFallbackResponse(question) {
   const q = question.toLowerCase();
   
   if (q.includes('grade') || q.includes('scor')) {
@@ -302,8 +301,8 @@ function getFallbackResponse(question: string): string {
  * Chat with the knowledge assistant
  */
 export async function chatWithAssistant(
-  messages: Array<{ role: 'user' | 'assistant'; content: string }>
-): Promise<{ response: string; citations: Citation[] }> {
+  messages
+) {
   try {
     // Get context from the last user message
     const lastUserMessage = messages.filter(m => m.role === 'user').pop();
@@ -325,7 +324,7 @@ export async function chatWithAssistant(
     // Build conversation history
     const conversationMessages = [
       {
-        role: 'system' as const,
+        role: 'system',
         content: `You are a helpful academic assistant for EMSI (École Marocaine des Sciences de l'Ingénieur).
         You help students with questions about academic policies, grades, attendance, exams, registration, campus resources, and current announcements.
         Be friendly, accurate, and helpful. Keep responses concise but complete.
@@ -335,7 +334,7 @@ export async function chatWithAssistant(
         ${fullContext}`
       },
       ...messages.map(m => ({
-        role: m.role as 'user' | 'assistant',
+        role: m.role,
         content: m.content
       }))
     ];
@@ -349,7 +348,7 @@ export async function chatWithAssistant(
     const response = completion.choices[0]?.message?.content || 
       "I'm here to help with your academic questions. What would you like to know?";
     
-    const citations: Citation[] = allSources.map(source => ({
+    const citations = allSources.map(source => ({
       source,
       excerpt: `From ${source}`
     }));
