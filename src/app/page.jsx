@@ -156,7 +156,7 @@ function StudentPanel() {
       const res = await fetch('/api/ai/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: chatInput, messages: [...chatMessages, userMessage].map(m => ({ role: m.role, content: m.content })) })
+        body: JSON.stringify({ message: chatInput, studentId: selectedStudentId, messages: [...chatMessages, userMessage].map(m => ({ role: m.role, content: m.content })) })
       })
       const data = await res.json()
       setChatMessages(prev => [...prev, { role: 'assistant', content: data.response, citations: data.citations, timestamp: new Date() }])

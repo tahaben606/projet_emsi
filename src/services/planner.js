@@ -1,9 +1,31 @@
 // EMSI Flow - Context-Aware Planner Service
 // Generates actionable daily recommendations based on student context
 
-import ZAI from 'z-ai-web-dev-sdk';
+import OpenAI from 'openai';
 import { prisma } from '@/lib/db';
 import { calculateStudentRisk } from './risk-engine';
+
+// Initialize Groq AI
+const openai = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: 'https://api.groq.com/openai/v1',
+});
+
+async function callGroq(messages, options = {}) {
+  const { temperature = 0.4, maxOutputTokens = 600 } = options;
+  try {
+    const completion = await openai.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      messages: messages,
+      temperature: temperature,
+      max_tokens: maxOutputTokens,
+    });
+    return completion;
+  } catch (error) {
+    console.error(`❌ Groq API error:`, error.message || error);
+    throw error;
+  }
+}
 
 /**
  * Get student context for planning
@@ -21,27 +43,27 @@ async function getStudentContext(studentId) {
       attendance: true
     }
   });
-  
+
   if (!student) {
     throw new Error('Student not found');
   }
-  
+
   // Calculate attendance rate
   const presentCount = student.attendance.filter(a => a.status === 'present' || a.status === 'excused').length;
   const attendanceRate = student.attendance.length > 0
     ? (presentCount / student.attendance.length) * 100
     : 100;
-  
+
   // Get risk calculation
   const riskCalc = await calculateStudentRisk(studentId);
-  
+
   // Mock upcoming events (in production, this would come from a calendar system)
   const upcomingEvents = [
     { title: 'Midterm Exams Begin', date: 'In 2 weeks' },
     { title: 'Course Withdrawal Deadline', date: 'In 3 weeks' },
     { title: 'Fall Break', date: 'In 4 weeks' }
   ];
-  
+
   return {
     studentId: student.id,
     name: student.name,
@@ -65,9 +87,8 @@ async function getStudentContext(studentId) {
 export async function generateRecommendations(studentId) {
   try {
     const context = await getStudentContext(studentId);
-    
-    const zai = await ZAI.create();
-    
+
+
     const prompt = `You are an academic advisor AI assistant. Based on the following student context, generate 3-5 actionable daily recommendations.
 
 Student: ${context.name}
@@ -92,23 +113,19 @@ Generate recommendations in this exact JSON format (no markdown, just raw JSON):
   }
 ]`;
 
-    const completion = await zai.chat.completions.create({
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an academic advisor assistant that generates helpful, specific recommendations for students. Always respond with valid JSON only.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.5,
-      max_tokens: 600
-    });
-    
+    const completion = await callGroq([
+      {
+        role: 'system',
+        content: 'You are an academic advisor assistant that generates helpful, specific recommendations for students. Always respond with valid JSON only.'
+      },
+      {
+        role: 'user',
+        content: prompt
+      }
+    ], { temperature: 0.5, maxOutputTokens: 600 });
+
     const responseText = completion.choices[0]?.message?.content || '[]';
-    
+
     // Parse JSON from response
     let recommendations = [];
     try {
@@ -121,11 +138,11 @@ Generate recommendations in this exact JSON format (no markdown, just raw JSON):
       // If parsing fails, generate default recommendations
       recommendations = getDefaultRecommendations(context);
     }
-    
+
     return recommendations;
   } catch (error) {
     console.error('Error generating recommendations:', error);
-    
+
     // Return default recommendations based on risk level
     const context = await getStudentContext(studentId);
     return getDefaultRecommendations(context);
@@ -137,7 +154,7 @@ Generate recommendations in this exact JSON format (no markdown, just raw JSON):
  */
 function getDefaultRecommendations(context) {
   const recommendations = [];
-  
+
   if (context.riskLevel === 'HIGH') {
     recommendations.push({
       priority: 'high',
@@ -146,7 +163,7 @@ function getDefaultRecommendations(context) {
       deadline: 'This week',
       resources: ['Academic Affairs Office', 'Building A, Room 301']
     });
-    
+
     recommendations.push({
       priority: 'high',
       action: 'Attend tutoring sessions for challenging subjects',
@@ -155,7 +172,7 @@ function getDefaultRecommendations(context) {
       resources: ['Tutoring Center - Building A, Room 101']
     });
   }
-  
+
   if (context.attendanceRate < 85) {
     recommendations.push({
       priority: context.attendanceRate < 75 ? 'high' : 'medium',
@@ -164,7 +181,7 @@ function getDefaultRecommendations(context) {
       deadline: 'Starting tomorrow'
     });
   }
-  
+
   // Check for low grades
   const lowGrades = context.recentGrades.filter(g => (g.value / g.maxValue) * 20 < 10);
   if (lowGrades.length > 0) {
@@ -176,7 +193,7 @@ function getDefaultRecommendations(context) {
       resources: ['Study groups', 'Office hours with instructors']
     });
   }
-  
+
   if (context.riskLevel === 'MEDIUM') {
     recommendations.push({
       priority: 'medium',
@@ -185,7 +202,7 @@ function getDefaultRecommendations(context) {
       deadline: 'This week'
     });
   }
-  
+
   if (context.riskLevel === 'LOW') {
     recommendations.push({
       priority: 'low',
@@ -194,7 +211,7 @@ function getDefaultRecommendations(context) {
       deadline: 'When available'
     });
   }
-  
+
   // Always add exam prep recommendation
   recommendations.push({
     priority: 'medium',
@@ -203,7 +220,7 @@ function getDefaultRecommendations(context) {
     deadline: 'Start this week',
     resources: ['Review past exams', 'Study guides', 'Office hours']
   });
-  
+
   return recommendations.slice(0, 5);
 }
 
@@ -213,31 +230,25 @@ function getDefaultRecommendations(context) {
 export async function getDailySummary(studentId) {
   try {
     const context = await getStudentContext(studentId);
-    
-    const zai = await ZAI.create();
-    
-    const completion = await zai.chat.completions.create({
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a friendly academic advisor assistant. Generate brief, encouraging daily summaries for students. Keep it under 100 words.'
-        },
-        {
-          role: 'user',
-          content: `Generate a brief daily summary for ${context.name}, a student in ${context.className} with risk score ${context.riskScore}/100 (${context.riskLevel} risk). 
+
+    const completion = await callGroq([
+      {
+        role: 'system',
+        content: 'You are a friendly academic advisor assistant. Generate brief, encouraging daily summaries for students. Keep it under 100 words.'
+      },
+      {
+        role: 'user',
+        content: `Generate a brief daily summary for ${context.name}, a student in ${context.className} with risk score ${context.riskScore}/100 (${context.riskLevel} risk). 
           Attendance: ${context.attendanceRate.toFixed(0)}%.
-          Recent grade average: ${context.recentGrades.length > 0 ? 
-            (context.recentGrades.reduce((a, g) => a + (g.value/g.maxValue)*20, 0) / context.recentGrades.length).toFixed(1) : 'N/A'}/20.
+          Recent grade average: ${context.recentGrades.length > 0 ?
+            (context.recentGrades.reduce((a, g) => a + (g.value / g.maxValue) * 20, 0) / context.recentGrades.length).toFixed(1) : 'N/A'}/20.
           Provide: 1) A personalized greeting, 2) A one-sentence summary of their academic status, 3) 2-3 areas to focus on today.
           Format as JSON: {"greeting": "...", "summary": "...", "focus": ["...", "..."]}`
-        }
-      ],
-      temperature: 0.6,
-      max_tokens: 200
-    });
-    
+      }
+    ], { temperature: 0.6, maxOutputTokens: 200 });
+
     const responseText = completion.choices[0]?.message?.content || '{}';
-    
+
     try {
       const jsonMatch = responseText.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
@@ -246,16 +257,16 @@ export async function getDailySummary(studentId) {
     } catch {
       // Fall through to default
     }
-    
+
     // Default summary
     return {
       greeting: `Good day, ${context.name}!`,
       summary: `You're currently at ${context.riskLevel} risk with a score of ${context.riskScore}/100. ${context.riskLevel === 'HIGH' ? 'Focus on improving your grades and attendance.' : context.riskLevel === 'MEDIUM' ? 'Stay consistent with your studies.' : 'Great work maintaining your academic performance!'}`,
-      focus: context.riskLevel === 'HIGH' 
+      focus: context.riskLevel === 'HIGH'
         ? ['Meet with advisor', 'Attend all classes', 'Start tutoring sessions']
         : context.riskLevel === 'MEDIUM'
-        ? ['Review weak subjects', 'Improve attendance', 'Prepare for exams']
-        : ['Continue current habits', 'Help classmates', 'Explore enrichment opportunities']
+          ? ['Review weak subjects', 'Improve attendance', 'Prepare for exams']
+          : ['Continue current habits', 'Help classmates', 'Explore enrichment opportunities']
     };
   } catch (error) {
     console.error('Error generating daily summary:', error);

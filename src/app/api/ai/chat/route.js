@@ -7,29 +7,29 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const { message, messages, studentId } = body;
-    
+
     if (!message && !messages) {
       return NextResponse.json(
         { error: 'Message or messages array is required' },
         { status: 400 }
       );
     }
-    
+
     let response;
     let citations;
-    
+
     if (messages && Array.isArray(messages)) {
-      // Multi-turn conversation
-      const result = await chatWithAssistant(messages);
+      // Multi-turn conversation (pass studentId for personalized context)
+      const result = await chatWithAssistant(messages, studentId || null);
       response = result.response;
       citations = result.citations;
     } else if (message) {
-      // Single query
-      const result = await queryKnowledgeBase(message);
+      // Single query (pass studentId for personalized context)
+      const result = await queryKnowledgeBase(message, studentId || null);
       response = result.answer;
       citations = result.citations;
     }
-    
+
     return NextResponse.json({
       response,
       citations,
