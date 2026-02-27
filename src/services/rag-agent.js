@@ -427,12 +427,15 @@ async function getStudentContext(studentId) {
     const subjectGrades = {};
     for (const g of student.grades) {
       const name = g.subject.name;
-      if (!subjectGrades[name]) subjectGrades[name] = [];
-      subjectGrades[name].push(`${((g.value / g.maxValue) * 20).toFixed(1)}/20 (${g.type})`);
+      if (!subjectGrades[name]) subjectGrades[name] = { total: 0, count: 0, list: [] };
+      const gradeVal = ((g.value / g.maxValue) * 20);
+      subjectGrades[name].total += gradeVal;
+      subjectGrades[name].count += 1;
+      subjectGrades[name].list.push(`${gradeVal.toFixed(1)}/20 (${g.type})`);
     }
 
     const gradesSummary = Object.entries(subjectGrades)
-      .map(([subject, grades]) => `- ${subject}: ${grades.join(', ')}`)
+      .map(([subject, data]) => `- ${subject}: ${data.list.join(', ')} ➔ Moyenne de la matière : ${(data.total / data.count).toFixed(1)}/20`)
       .join('\n');
 
     // Build exam-specific breakdown
@@ -514,7 +517,7 @@ Tu aides les étudiants et le personnel avec toutes les questions relatives à l
 1. **Réponds toujours dans la même langue que la question** (français ou anglais).
 2. **Sois précis et utile** : utilise les données du contexte ci-dessous pour répondre.
 3. **Quand l'étudiant pose une question sur ses notes, son assiduité ou sa situation personnelle**, utilise les données de son profil ci-dessous.
-4. **Cite tes sources** quand tu donnes une information factuelle (ex: "Selon la politique d'assiduité de l'EMSI...").
+4. **Ne cite pas tes sources**, intègre simplement la réponse naturellement.
 5. **Si l'information n'est pas dans le contexte**, dis-le honnêtement et suggère à qui s'adresser.
 6. **Sois amical et encourageant**. Utilise des emojis modérément.
 7. **Garde tes réponses concises** mais complètes (2-4 paragraphes max).
@@ -561,16 +564,9 @@ export async function queryKnowledgeBase(question, studentId = null) {
 
     const answer = completion.choices[0]?.message?.content || 'Désolé, je n\'ai pas pu générer une réponse. Veuillez réessayer.';
 
-    // Create citations from sources
-    const uniqueSources = [...new Set(allSources)];
-    const citations = uniqueSources.map(source => ({
-      source,
-      excerpt: `Source: ${source}`
-    }));
-
     return {
       answer,
-      citations,
+      citations: [], // Disabled citations as per user request
       confidence: allSources.length > 0 ? 0.9 : 0.5
     };
   } catch (error) {
@@ -578,7 +574,7 @@ export async function queryKnowledgeBase(question, studentId = null) {
 
     return {
       answer: getFallbackResponse(question),
-      citations: [{ source: 'EMSI - Informations Générales', excerpt: 'Réponse de secours' }],
+      citations: [], // Disabled citations
       confidence: 0.5
     };
   }
@@ -628,13 +624,10 @@ export async function chatWithAssistant(messages, studentId = null) {
     const response = completion.choices[0]?.message?.content ||
       "Je suis là pour vous aider. Que souhaitez-vous savoir ? 😊";
 
-    const uniqueSources = [...new Set(allSources)];
-    const citations = uniqueSources.map(source => ({
-      source,
-      excerpt: `Source: ${source}`
-    }));
-
-    return { response, citations };
+    return {
+      response,
+      citations: [] // Disabled citations 
+    };
   } catch (error) {
     console.error('Chat error:', error);
     return {

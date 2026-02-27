@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    
+
     const student = await prisma.student.findUnique({
       where: { id },
       include: {
@@ -23,37 +23,36 @@ export async function GET(
         },
         attendance: {
           include: { subject: true },
-          orderBy: { date: 'desc' },
-          take: 30
+          orderBy: { date: 'desc' }
         }
       }
     });
-    
+
     if (!student) {
       return NextResponse.json(
         { error: 'Student not found' },
         { status: 404 }
       );
     }
-    
+
     // Calculate risk
     const riskCalculation = await calculateStudentRisk(id);
-    
+
     // Calculate grade statistics
     const grades = student.grades;
     const gradeAverage = grades.length > 0
       ? grades.reduce((acc, g) => acc + (g.value / g.maxValue) * 20, 0) / grades.length
       : null;
-    
+
     // Calculate attendance statistics
     const attendance = student.attendance;
-    const presentCount = attendance.filter(a => a.status === 'present').length;
+    const presentCount = attendance.filter(a => a.status === 'present' || a.status === 'excused').length;
     const absentCount = attendance.filter(a => a.status === 'absent').length;
     const lateCount = attendance.filter(a => a.status === 'late').length;
     const attendanceRate = attendance.length > 0
       ? (presentCount / attendance.length) * 100
       : null;
-    
+
     return NextResponse.json({
       ...student,
       risk: riskCalculation,

@@ -37,8 +37,7 @@ async function getStudentContext(studentId) {
       class: true,
       grades: {
         include: { subject: true },
-        orderBy: { date: 'desc' },
-        take: 10
+        orderBy: { date: 'desc' }
       },
       attendance: true
     }
@@ -47,6 +46,11 @@ async function getStudentContext(studentId) {
   if (!student) {
     throw new Error('Student not found');
   }
+
+  // Calculate global grade average manually
+  const gradeAverage = student.grades.length > 0
+    ? student.grades.reduce((acc, g) => acc + (g.value / g.maxValue) * 20, 0) / student.grades.length
+    : 0;
 
   // Calculate attendance rate
   const presentCount = student.attendance.filter(a => a.status === 'present' || a.status === 'excused').length;
@@ -70,7 +74,8 @@ async function getStudentContext(studentId) {
     className: student.class.name,
     riskScore: riskCalc.score,
     riskLevel: riskCalc.level,
-    recentGrades: student.grades.map(g => ({
+    gradeAverage,
+    recentGrades: student.grades.slice(0, 10).map(g => ({
       subject: g.subject.name,
       value: g.value,
       maxValue: g.maxValue,
@@ -240,8 +245,7 @@ export async function getDailySummary(studentId) {
         role: 'user',
         content: `Generate a brief daily summary for ${context.name}, a student in ${context.className} with risk score ${context.riskScore}/100 (${context.riskLevel} risk). 
           Attendance: ${context.attendanceRate.toFixed(0)}%.
-          Recent grade average: ${context.recentGrades.length > 0 ?
-            (context.recentGrades.reduce((a, g) => a + (g.value / g.maxValue) * 20, 0) / context.recentGrades.length).toFixed(1) : 'N/A'}/20.
+          Overall grade average: ${context.gradeAverage.toFixed(1)}/20.
           Provide: 1) A personalized greeting, 2) A one-sentence summary of their academic status, 3) 2-3 areas to focus on today.
           Format as JSON: {"greeting": "...", "summary": "...", "focus": ["...", "..."]}`
       }
