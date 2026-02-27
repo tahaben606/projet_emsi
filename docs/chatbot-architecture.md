@@ -42,7 +42,7 @@ The AI chatbot in EMSI Flow uses **RAG (Retrieval-Augmented Generation)** to ans
 ┌──────────────────────────────────────────────┐
 │           GENERATION PHASE                    │
 │                                               │
-│  Z.ai SDK → Gemini LLM                       │
+│  OpenAI SDK → Groq API (llama-3.3-70b)        │
 │  → Generates grounded, cited response         │
 │  → Temperature: 0.4 (factual, not creative)   │
 └──────────────┬───────────────────────────────┘
@@ -63,7 +63,7 @@ The AI chatbot in EMSI Flow uses **RAG (Retrieval-Augmented Generation)** to ans
 | `src/app/api/ai/chat/route.js` | API endpoint for the chatbot |
 | `src/app/page.jsx` | Frontend chat UI (StudentPanel component) |
 | `prisma/schema.prisma` | Database schema (KnowledgeDocument, News, Student) |
-| `.env` | API key configuration (`GEMINI_API_KEY`) |
+| `.env` | API key configuration (`GROQ_API_KEY`) |
 
 ---
 
@@ -110,8 +110,8 @@ This allows questions like:
 
 ### Environment Variables (`.env`)
 ```env
-GEMINI_API_KEY="your-key-here"  # Required for AI responses
-DATABASE_URL="file:./dev.db"     # SQLite database path
+GROQ_API_KEY="your-key-here"  # Required for AI responses
+DATABASE_URL="file:./dev.db"  # SQLite database path
 ```
 
 ### Adding New Knowledge
@@ -142,4 +142,8 @@ If the AI API fails (network error, rate limit), the system uses rule-based fall
 - Exam schedules
 - Registration
 - Scholarships
+- Internships (Stages) & Projects
+- Student Life (BDE, Clubs)
+- Tuition Fees & Payments
+- IT Services & Wi-Fi
 - General greetings

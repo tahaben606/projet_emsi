@@ -307,12 +307,6 @@ async function main() {
       tags: JSON.stringify(['calendar', 'dates', 'exams', 'holidays'])
     },
     {
-      title: 'Inscription aux Cours',
-      content: 'L\'inscription aux cours ouvre 2 semaines avant le début du semestre. L\'inscription tardive entraîne des frais de 200 MAD. La date limite pour abandonner un cours est 3 semaines après le début du semestre.',
-      category: 'academic',
-      tags: JSON.stringify(['registration', 'courses', 'inscription'])
-    },
-    {
       title: 'Ressources de Soutien Académique',
       content: 'Centre de Tutorat: Bâtiment A, Salle 101, Ouvert 9h-18h. Centre d\'Écriture: Bâtiment B, Salle 205, Ouvert 10h-17h. Aide en Mathématiques: Bâtiment C, Salle 103, Ouvert 14h-18h.',
       category: 'resources',
@@ -325,28 +319,34 @@ async function main() {
       tags: JSON.stringify(['scholarship', 'financial aid', 'bourse'])
     },
     {
-      title: 'Probation Académique',
-      content: 'Les étudiants avec une moyenne inférieure à 10/20 pendant deux semestres consécutifs sont placés en probation. Les étudiants en probation doivent rencontrer leur conseiller académique chaque semaine.',
-      category: 'policy',
-      tags: JSON.stringify(['probation', 'academic standing', 'warning'])
-    },
-    {
-      title: 'Politique d\'Examens',
-      content: 'Le calendrier des examens finaux est affiché 3 semaines avant la période d\'examens. Les conflits d\'horaires doivent être signalés dans les 5 jours. Les examens de rattrapage ne sont autorisés que pour les urgences médicales documentées.',
+      title: 'Politique des Stages',
+      content: '1ère et 2ème année : Stage d\'observation obligatoire en été (1 mois). 3ème et 4ème année : Stage technique (2 mois). 5ème année : Projet de Fin d\'Études PFE (6 mois). Toutes les conventions de stage doivent être validées avant le début.',
       category: 'academic',
-      tags: JSON.stringify(['exams', 'schedule', 'makeup'])
+      tags: JSON.stringify(['stage', 'internship', 'pfe', 'pfa', 'convention'])
     },
     {
-      title: 'Installations du Campus',
-      content: 'Cafétéria: Bâtiment E, Ouvert 7h-20h. Complexe Sportif: Bâtiment F, Piscine, Salle de Sport. Centre Étudiant: Bâtiment G, Clubs, Salles d\'étude. Bibliothèque: Ouverte 7h-22h lundi-vendredi.',
+      title: 'Services Informatiques et Réseaux',
+      content: 'Les étudiants utilisent Microsoft Teams pour les cours et les devoirs. Le Wi-Fi du campus est "EMSI_Student" (connexion avec l\'email de l\'école). L\'accès à Office 365 est gratuit. En cas de mot de passe oublié, allez au Help Desk (Bâtiment B).',
       category: 'resources',
-      tags: JSON.stringify(['campus', 'facilities', 'library', 'sports'])
+      tags: JSON.stringify(['wifi', 'it', 'moodle', 'teams', 'password', 'mot de passe'])
     },
     {
-      title: 'Code de Conduite Étudiant',
-      content: 'L\'intégrité académique est strictement appliquée. Le plagiat entraîne l\'échec du cours et une possible suspension. Un comportement respectueux envers le corps professoral est obligatoire. Carte d\'étudiant visible sur le campus.',
+      title: 'Clubs et Bureau des Étudiants',
+      content: 'Le BDE organise la vie associative. Les clubs majeurs incluent l\'IT Club, le Club de Robotique, Enactus et le Club de Sport. Les inscriptions aux clubs ont lieu les trois premières semaines du semestre d\'automne au Centre Étudiant.',
+      category: 'resources',
+      tags: JSON.stringify(['club', 'bde', 'sport', 'activité', 'extracurricular'])
+    },
+    {
+      title: 'Frais de Scolarité',
+      content: 'Les paiements peuvent être effectués au comptant, en 3 ou 9 mensualités. Une pénalité de 5% est appliquée en cas de retard de plus de 15 jours. Les frais de réinscription doivent être réglés avant le 30 juillet.',
       category: 'policy',
-      tags: JSON.stringify(['conduct', 'integrity', 'plagiarism', 'rules'])
+      tags: JSON.stringify(['frais', 'paiement', 'tuition', 'finance'])
+    },
+    {
+      title: 'Santé et Infirmerie',
+      content: 'L\'infirmerie (Bâtiment D) est ouverte de 8h à 17h pour les premiers soins. Des consultations psychologiques gratuites sont disponibles sur rendez-vous à counseling@emsi.ma.',
+      category: 'resources',
+      tags: JSON.stringify(['santé', 'infirmerie', 'médical', 'health'])
     }
   ];
 

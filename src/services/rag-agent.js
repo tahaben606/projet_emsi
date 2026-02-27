@@ -126,12 +126,55 @@ const KNOWLEDGE_CONTENT = `
 - Dress code: Business casual for all academic activities
 - ID cards must be visible on campus at all times
 
+## Internships and Professional Projects (Stages, PFA, PFE)
+- 1st & 2nd Year: 1-month observation internship required in summer (Stage d'observation)
+- 3rd & 4th Year: 2-month technical internship required (Stage technique / PFA)
+- 5th Year: 6-month final year project (PFE) required for graduation
+- Internship agreements (conventions de stage) must be signed by the school administration before starting
+- Career Center (Building A, Room 301) assists with resume building and interview prep
+
+## IT Services & Connectivity
+- Student Portal (Intranet): Use your EMSI email to access grades, schedules, and documents
+- LMS (Moodle / Teams): All course materials are hosted on Microsoft Teams
+- Campus Wi-Fi: Connect to "EMSI_Student" using your student credentials
+- Microsoft 365: Free access to Word, Excel, PowerPoint, and OneDrive with your student email
+- Lost Password: Visit the IT Help Desk (Building B) or email it@emsi.ma
+
+## Student Life & Extracurriculars
+- BDE (Bureau des Étudiants): Organizes main student events and trips (Building G)
+- Active Clubs: IT Club, Robotics Club, Enactus, Sports Club, Music Club
+- Club Registration: Occurs during the first 3 weeks of the Fall semester
+- Annual hackathons and coding competitions are held every Spring
+- Athletics: Football, Basketball, and Volleyball teams have tryouts in October
+
+## International Exchange & Mobility
+- Double Degree Programs: Available with partner universities in France, Canada, and Spain
+- Eligibility: Students must be in their 3th or 4th year with a minimum GPA of 14/20
+- Language Requirements: B2 level in English (IELTS/TOEFL) or French (DELF/DALF) depending on destination
+- Application Deadline for Exchange: March 1st for the following Fall semester
+- International Office: Located in Building C, Room 204
+
+## Tuition Fees & Payments
+- Tuition is payable in full at the beginning of the year or in 3 or 9 installments
+- Payment methods: Bank transfer, certified check, or online via the student portal
+- Late payment penalty: 5% fee on the outstanding balance after 15 days
+- Re-registration fees: Must be paid by July 30th to secure a spot for the next year
+- Accounting Office: Building A, Ground Floor (Open 9AM-4PM)
+
+## Health & Housing Services
+- Campus Infirmary: Building D, Room 101. A nurse is available from 8AM to 5PM
+- Counseling: Free mental health counseling available by appointment (counseling@emsi.ma)
+- Housing: EMSI does not have on-campus dorms but partners with local student residences
+- Transportation: Shuttle buses available from main train stations to campus (schedule on intranet)
+
 ## Important Contacts
 - Academic Affairs: +212-XXX-XXXX, academic@emsi.ma
 - Student Services: +212-XXX-XXXX, students@emsi.ma
 - IT Help Desk: +212-XXX-XXXX, it@emsi.ma
 - Security: +212-XXX-XXXX (24/7)
 - Health Services: +212-XXX-XXXX, health@emsi.ma
+- Financial Office: +212-XXX-XXXX, finance@emsi.ma
+- Career Center: +212-XXX-XXXX, carriere@emsi.ma
 `;
 
 // ─────────────────────────────────────────────────
@@ -150,6 +193,12 @@ const SYNONYM_MAP = {
   'campus': ['campus', 'bâtiment', 'batiment', 'building', 'cafétéria', 'cafeteria', 'sport', 'parking', 'laboratoire', 'lab'],
   'conduite': ['conduct', 'plagiat', 'plagiarism', 'intégrité', 'integrity', 'règlement', 'reglement', 'discipline'],
   'contact': ['contact', 'téléphone', 'telephone', 'email', 'mail', 'appeler', 'joindre'],
+  'stage': ['stage', 'internship', 'pfe', 'pfa', 'projet', 'experience', 'entreprise', 'convention'],
+  'informatique': ['it', 'wifi', 'internet', 'mot de passe', 'password', 'moodle', 'teams', 'office', 'lms', 'connexion'],
+  'vie_etudiante': ['club', 'bde', 'extracurricular', 'sport', 'événement', 'event', 'fête', 'hackathon'],
+  'international': ['international', 'échange', 'exchange', 'erasmus', 'étranger', 'etranger', 'double diplôme', 'diplome', 'canada', 'france'],
+  'finance': ['frais', 'paiement', 'payment', 'tuition', 'scolarité', 'scolarite', 'argent', 'prix', 'coût', 'cout', 'tranche', 'mensualité'],
+  'sante_logement': ['santé', 'sante', 'health', 'infirmerie', 'médical', 'maladie', 'logement', 'housing', 'résidence', 'transport', 'transportation'],
 };
 
 // ─────────────────────────────────────────────────
@@ -222,7 +271,7 @@ async function getNewsContext() {
     }).join('\n');
 
     return {
-      content: `\n## Annonces et Événements Actuels\n${newsContent}`,
+      content: `\n## Annonces et Événements Actuels\n${newsContent} `,
       sources: ['Annonces Actuelles']
     };
   } catch (error) {
@@ -272,7 +321,7 @@ async function getDatabaseKnowledge(query) {
 
     if (relevant.length === 0) return { content: '', sources: [] };
 
-    const content = relevant.map(d => `### ${d.doc.title}\n${d.doc.content}`).join('\n\n');
+    const content = relevant.map(d => `### ${d.doc.title} \n${d.doc.content} `).join('\n\n');
     const sources = relevant.map(d => d.doc.title);
 
     return { content, sources };
@@ -620,9 +669,21 @@ function getFallbackResponse(question) {
   if (q.includes('bourse') || q.includes('scholarship') || q.includes('financ')) {
     return "🎓 Bourses disponibles: Mérite (moyenne > 16/20, 50% frais), Aide basée sur les besoins, Bourse sportive. Date limite de candidature: 30 juin. Contactez le bureau d'aide financière.";
   }
+  if (q.includes('stage') || q.includes('internship') || q.includes('pfe') || q.includes('pfa')) {
+    return "💼 Stages : Observation (1ère/2ème année), Technique (3ème/4ème année), PFE (5ème année - 6 mois). Les conventions doivent être signées par l'administration avant de commencer.";
+  }
+  if (q.includes('club') || q.includes('bde') || q.includes('sport')) {
+    return "🎉 La vie étudiante (BDE) organise de nombreux clubs (IT, Robotique, Enactus, Sports, Musique). Les inscriptions se font en début de semestre au Student Center (Bâtiment G).";
+  }
+  if (q.includes('frais') || q.includes('paiement') || q.includes('tuition')) {
+    return "💰 Les frais de scolarité peuvent être payés comptant, en 3 ou 9 tranches. Méthodes: virement, chèque ou en ligne. Attention: 5% de pénalité de retard après 15 jours.";
+  }
+  if (q.includes('wifi') || q.includes('mot de passe') || q.includes('teams') || q.includes('moodle')) {
+    return "💻 Connectez-vous au réseau 'EMSI_Student' avec vos identifiants. Pour réinitialiser un mot de passe ou d'autres problèmes informatiques, contactez le Help Desk à it@emsi.ma (Bâtiment B).";
+  }
   if (q.includes('bonjour') || q.includes('salut') || q.includes('hello') || q.includes('hi')) {
-    return "👋 Bonjour ! Je suis votre assistant académique EMSI. Je peux vous aider avec des questions sur les notes, l'assiduité, les examens, les inscriptions, les bourses et les ressources du campus. Que souhaitez-vous savoir ?";
+    return "👋 Bonjour ! Je suis votre assistant académique EMSI. Je peux vous aider avec des questions sur les notes, examens, stages, clubs, frais, etc. Que souhaitez-vous savoir ?";
   }
 
-  return "🤔 Je suis votre assistant académique EMSI. Je peux vous aider avec des questions sur les notes, l'assiduité, les examens, les inscriptions, les bourses ou les ressources du campus. Pourriez-vous reformuler votre question ?";
+  return "🤔 Je suis votre assistant académique EMSI. Je peux vous aider avec des questions sur les notes, l'assiduité, les examens, les inscriptions, les bourses, les stages ou la vie étudiante. Pourriez-vous reformuler votre question ?";
 }
