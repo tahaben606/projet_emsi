@@ -4,6 +4,7 @@
 
 import OpenAI from 'openai';
 import { PrismaClient } from '@prisma/client';
+import { DEVELOPER_CUSTOM_INSTRUCTIONS } from './ai-instructions';
 
 const prisma = new PrismaClient();
 
@@ -526,7 +527,11 @@ Tu aides les étudiants et le personnel avec toutes les questions relatives à l
 ${studentBlock}
 
 ## Base de Connaissances EMSI
-${fullContext}`;
+${fullContext}
+
+## Developer Custom Steering (Developer Only)
+${DEVELOPER_CUSTOM_INSTRUCTIONS}
+`;
 }
 
 // ─────────────────────────────────────────────────
