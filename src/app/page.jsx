@@ -57,6 +57,7 @@ import {
   Save
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Navbar from '@/components/navbar'
 
 // Helper functions
 const getRiskColor = (level) => {
@@ -968,26 +969,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center">
-                <img src="/navlogo.png" alt="EMSI Logo" className="h-10 w-auto object-contain" />
-              </div>
-              <div className="h-8 w-px bg-gray-200 mx-2 hidden sm:block"></div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900 tracking-tight">Academic Flow</h1>
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Risk Detection System</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge variant="outline" className="hidden sm:flex"><Activity className="h-3 w-3 mr-1" />Temps Réel</Badge>
-              <Badge className="bg-green-500 hidden sm:flex">IA Active</Badge>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="container mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
