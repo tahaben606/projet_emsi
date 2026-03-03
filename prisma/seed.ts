@@ -358,6 +358,106 @@ async function main() {
 
   console.log(`📚 Created ${knowledgeDocs.length} knowledge documents`);
 
+  // Create Schedules
+  const scheduleData = [
+    {
+      name: 'Spring 2026 - Main Schedule',
+      description: 'Main class schedule for Spring 2026',
+      classId: classMap['1GI'],
+      isPublished: true,
+      slots: [
+        // Monday
+        { day: 'monday', startTime: '08:30', endTime: '10:30', subject: 'Mathématiques', room: 'A101', instructor: 'Dr. Hassan Bennani' },
+        { day: 'monday', startTime: '10:45', endTime: '12:45', subject: 'Algorithmique', room: 'A102', instructor: 'Prof. Fatima Alaoui' },
+        { day: 'monday', startTime: '13:30', endTime: '15:30', subject: 'Programmation C', room: 'Lab 1', instructor: 'Eng. Ahmed Rashid' },
+        // Tuesday
+        { day: 'tuesday', startTime: '09:00', endTime: '11:00', subject: 'Physique', room: 'A201', instructor: 'Dr. Youssef Karim' },
+        { day: 'tuesday', startTime: '11:15', endTime: '13:15', subject: 'Anglais', room: 'A303', instructor: 'Prof. Sarah Johnson' },
+        { day: 'tuesday', startTime: '14:00', endTime: '16:00', subject: 'Programmation C', room: 'Lab 2', instructor: 'Eng. Ahmed Rashid' },
+        // Wednesday
+        { day: 'wednesday', startTime: '08:30', endTime: '10:30', subject: 'Algorithmique', room: 'A102', instructor: 'Prof. Fatima Alaoui' },
+        { day: 'wednesday', startTime: '10:45', endTime: '12:45', subject: 'Mathématiques', room: 'A101', instructor: 'Dr. Hassan Bennani' },
+        { day: 'wednesday', startTime: '13:30', endTime: '15:30', subject: 'Projet Tuteuré', room: 'Lab 3', instructor: 'Prof. Karim Abdi' },
+        // Thursday
+        { day: 'thursday', startTime: '09:00', endTime: '11:00', subject: 'Programmation C', room: 'Lab 1', instructor: 'Eng. Ahmed Rashid' },
+        { day: 'thursday', startTime: '11:15', endTime: '13:15', subject: 'Anglais', room: 'A303', instructor: 'Prof. Sarah Johnson' },
+        { day: 'thursday', startTime: '14:00', endTime: '16:00', subject: 'Physique', room: 'A201', instructor: 'Dr. Youssef Karim' },
+        // Friday
+        { day: 'friday', startTime: '10:00', endTime: '12:00', subject: 'Atelier - Algorithmique', room: 'Lab 1', instructor: 'Prof. Fatima Alaoui' },
+        { day: 'friday', startTime: '13:00', endTime: '15:00', subject: 'Séminaire', room: 'Amphithéâtre', instructor: 'Various' },
+      ]
+    },
+    {
+      name: 'Spring 2026 - Schedule B',
+      description: 'Alternative schedule for 2GI students',
+      classId: classMap['2GI'],
+      isPublished: true,
+      slots: [
+        // Monday
+        { day: 'monday', startTime: '08:30', endTime: '10:30', subject: 'Base de données', room: 'B101', instructor: 'Prof. Mohammed Bennani' },
+        { day: 'monday', startTime: '10:45', endTime: '12:45', subject: 'Programmation Java', room: 'Lab 1', instructor: 'Eng. Karim Hassan' },
+        { day: 'monday', startTime: '13:30', endTime: '15:30', subject: 'Réseaux', room: 'B203', instructor: 'Dr. Leila Amini' },
+        // Tuesday
+        { day: 'tuesday', startTime: '09:00', endTime: '11:00', subject: 'Systèmes', room: 'B102', instructor: 'Prof. Rachid Alami' },
+        { day: 'tuesday', startTime: '11:15', endTime: '13:15', subject: 'Mathématiques Avancées', room: 'B201', instructor: 'Dr. Hassan Bennani' },
+        { day: 'tuesday', startTime: '14:00', endTime: '16:00', subject: 'Programmation Java', room: 'Lab 2', instructor: 'Eng. Karim Hassan' },
+        // Wednesday
+        { day: 'wednesday', startTime: '08:30', endTime: '10:30', subject: 'Base de données', room: 'B101', instructor: 'Prof. Mohammed Bennani' },
+        { day: 'wednesday', startTime: '10:45', endTime: '12:45', subject: 'Réseaux', room: 'B203', instructor: 'Dr. Leila Amini' },
+        { day: 'wednesday', startTime: '13:30', endTime: '15:30', subject: 'Projet - Développement', room: 'Lab 3', instructor: 'Prof. Karim Abdi' },
+        // Thursday
+        { day: 'thursday', startTime: '09:00', endTime: '11:00', subject: 'Programmation Java', room: 'Lab 1', instructor: 'Eng. Karim Hassan' },
+        { day: 'thursday', startTime: '11:15', endTime: '13:15', subject: 'Systèmes', room: 'B102', instructor: 'Prof. Rachid Alami' },
+        { day: 'thursday', startTime: '14:00', endTime: '16:00', subject: 'Mathématiques Avancées', room: 'B201', instructor: 'Dr. Hassan Bennani' },
+        // Friday
+        { day: 'friday', startTime: '10:00', endTime: '12:00', subject: 'Atelier - Programmation Java', room: 'Lab 1', instructor: 'Eng. Karim Hassan' },
+        { day: 'friday', startTime: '13:00', endTime: '15:00', subject: 'Conférence', room: 'Amphithéâtre', instructor: 'Guest Lecturer' },
+      ]
+    },
+    {
+      name: 'Spring 2026 - IA Schedule',
+      description: 'Schedule for 2IA students',
+      classId: classMap['2IA'],
+      isPublished: true,
+      slots: [
+        // Monday
+        { day: 'monday', startTime: '08:30', endTime: '10:30', subject: 'Machine Learning', room: 'C101', instructor: 'Dr. Ibrahim Hassan' },
+        { day: 'monday', startTime: '10:45', endTime: '12:45', subject: 'Deep Learning', room: 'Lab ML1', instructor: 'Prof. Amira Zain' },
+        { day: 'monday', startTime: '13:30', endTime: '15:30', subject: 'NLP', room: 'C202', instructor: 'Dr. Khalid Mourad' },
+        // Tuesday
+        { day: 'tuesday', startTime: '09:00', endTime: '11:00', subject: 'Computer Vision', room: 'Lab CV', instructor: 'Prof. Samira Bennis' },
+        { day: 'tuesday', startTime: '11:15', endTime: '13:15', subject: 'Machine Learning', room: 'C101', instructor: 'Dr. Ibrahim Hassan' },
+        { day: 'tuesday', startTime: '14:00', endTime: '16:00', subject: 'Deep Learning', room: 'Lab ML2', instructor: 'Prof. Amira Zain' },
+        // Wednesday
+        { day: 'wednesday', startTime: '08:30', endTime: '10:30', subject: 'NLP', room: 'C202', instructor: 'Dr. Khalid Mourad' },
+        { day: 'wednesday', startTime: '10:45', endTime: '12:45', subject: 'Computer Vision', room: 'Lab CV', instructor: 'Prof. Samira Bennis' },
+        { day: 'wednesday', startTime: '13:30', endTime: '15:30', subject: 'Projet IA', room: 'Lab AI', instructor: 'Dr. Ibrahim Hassan' },
+        // Thursday
+        { day: 'thursday', startTime: '09:00', endTime: '11:00', subject: 'Deep Learning', room: 'Lab ML1', instructor: 'Prof. Amira Zain' },
+        { day: 'thursday', startTime: '11:15', endTime: '13:15', subject: 'Computer Vision', room: 'Lab CV', instructor: 'Prof. Samira Bennis' },
+        { day: 'thursday', startTime: '14:00', endTime: '16:00', subject: 'Machine Learning', room: 'C101', instructor: 'Dr. Ibrahim Hassan' },
+        // Friday
+        { day: 'friday', startTime: '10:00', endTime: '12:00', subject: 'Atelier - ML/DL', room: 'Lab ML1', instructor: 'Prof. Amira Zain' },
+        { day: 'friday', startTime: '13:00', endTime: '15:00', subject: 'Séminaire IA', room: 'Amphithéâtre', instructor: 'Industry Expert' },
+      ]
+    }
+  ];
+
+  for (const schedule of scheduleData) {
+    const { slots, ...scheduleInfo } = schedule;
+    await prisma.schedule.create({
+      data: {
+        ...scheduleInfo,
+        slots: {
+          createMany: {
+            data: slots
+          }
+        }
+      }
+    });
+  }
+  console.log(`📅 Created ${scheduleData.length} schedules with slots`);
+
   // Create News
   const newsItems = [
     {

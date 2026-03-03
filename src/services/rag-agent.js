@@ -127,10 +127,22 @@ const KNOWLEDGE_CONTENT = `
 - Dress code: Business casual for all academic activities
 - ID cards must be visible on campus at all times
 
+## Class Schedules & Timetables
+- Each class has a published weekly schedule available on the student portal
+- Schedules are organized by day (Monday-Friday) with time slots for each class
+- Students can view their class schedule, instructor names, and classroom locations
+- Schedule changes are communicated through the student portal and email
+- If you need to view your schedule, go to /schedules and select "View Schedule" tab
+- Schedules include course name, time, room location, and instructor information
+- Classes typically run from 8:30 AM to 5:30 PM depending on the schedule
+- Room numbers follow building codes (e.g., A101 = Building A Room 101)
+- Lab sessions may be in different locations (Lab 1, Lab 2, Lab ML1, Lab CV, etc.)
+- Instructors and room assignments may change; always check the latest schedule
+
 ## Internships and Professional Projects (Stages, PFA, PFE)
 - 1st & 2nd Year: 1-month observation internship required in summer (Stage d'observation)
-- 3rd & 4th Year: 2-month technical internship required (Stage technique / PFA)
-- 5th Year: 6-month final year project (PFE) required for graduation
+- 2nd & 3rd Year: 2-month technical internship required (Stage technique / PFA)
+- Final Year: 6-month final year project (PFE) required for graduation
 - Internship agreements (conventions de stage) must be signed by the school administration before starting
 - Career Center (Building A, Room 301) assists with resume building and interview prep
 
@@ -140,6 +152,7 @@ const KNOWLEDGE_CONTENT = `
 - Campus Wi-Fi: Connect to "EMSI_Student" using your student credentials
 - Microsoft 365: Free access to Word, Excel, PowerPoint, and OneDrive with your student email
 - Lost Password: Visit the IT Help Desk (Building B) or email it@emsi.ma
+- Schedule Portal: Access /schedules to view your class timetable and instructor info
 
 ## Student Life & Extracurriculars
 - BDE (Bureau des Étudiants): Organizes main student events and trips (Building G)
@@ -385,6 +398,139 @@ function retrieveRelevantContext(query, maxChunks = 5) {
 }
 
 // ─────────────────────────────────────────────────
+// 4.5. SCHEDULE CONTEXT: Fetch class schedules
+// ─────────────────────────────────────────────────
+
+/**
+ * Fetch student's class schedule from the database
+ */
+async function getStudentScheduleContext(studentId, classId) {
+  try {
+    if (!classId) return { content: '', sources: [] };
+
+    const schedules = await prisma.schedule.findMany({
+      where: {
+        classId: classId,
+        isPublished: true
+      },
+      include: {
+        slots: {
+          orderBy: [
+            { day: 'asc' },
+            { startTime: 'asc' }
+          ]
+        }
+      },
+      take: 1
+    });
+
+    if (schedules.length === 0) {
+      return { content: '', sources: [] };
+    }
+
+    const schedule = schedules[0];
+    
+    // Organize slots by day
+    const dayLabels = {
+      monday: 'Lundi',
+      tuesday: 'Mardi',
+      wednesday: 'Mercredi',
+      thursday: 'Jeudi',
+      friday: 'Vendredi',
+      saturday: 'Samedi',
+      sunday: 'Dimanche'
+    };
+
+    let scheduleText = `## ${schedule.name}\n${schedule.description || ''}\n\n`;
+
+    const slotsByDay = {};
+    schedule.slots.forEach(slot => {
+      if (!slotsByDay[slot.day]) {
+        slotsByDay[slot.day] = [];
+      }
+      slotsByDay[slot.day].push(slot);
+    });
+
+    Object.entries(dayLabels).forEach(([dayKey, dayLabel]) => {
+      const daySlots = slotsByDay[dayKey] || [];
+      if (daySlots.length > 0) {
+        scheduleText += `### ${dayLabel}\n`;
+        daySlots.forEach(slot => {
+          scheduleText += `- ${slot.startTime}-${slot.endTime}: ${slot.subject || 'N/A'} (${slot.room || 'TBA'}) - ${slot.instructor || 'TBA'}\n`;
+        });
+        scheduleText += '\n';
+      }
+    });
+
+    return {
+      content: scheduleText,
+      sources: ['Horaire de Classe']
+    };
+  } catch (error) {
+    console.error('Error fetching schedule context:', error);
+    return { content: '', sources: [] };
+  }
+}
+
+/**
+ * Fetch schedules that match a query (e.g., search for a specific instructor or subject)
+ */
+async function searchSchedules(query, classId) {
+  try {
+    const queryNormalized = normalizeText(query);
+    
+    const schedules = await prisma.schedule.findMany({
+      where: {
+        isPublished: true,
+        ...(classId && { classId })
+      },
+      include: {
+        slots: {
+          where: {
+            OR: [
+              { subject: { contains: query, mode: 'insensitive' } },
+              { instructor: { contains: query, mode: 'insensitive' } },
+              { room: { contains: query, mode: 'insensitive' } }
+            ]
+          },
+          orderBy: [
+            { day: 'asc' },
+            { startTime: 'asc' }
+          ]
+        }
+      }
+    });
+
+    if (schedules.length === 0) {
+      return { content: '', sources: [] };
+    }
+
+    let content = '';
+    const results = schedules.filter(s => s.slots.length > 0);
+
+    if (results.length > 0) {
+      content = `## Classes Trouvées pour "${query}"\n\n`;
+      results.forEach(schedule => {
+        content += `### ${schedule.name}\n`;
+        schedule.slots.forEach(slot => {
+          const dayLabels = { monday: 'Lundi', tuesday: 'Mardi', wednesday: 'Mercredi', thursday: 'Jeudi', friday: 'Vendredi', saturday: 'Samedi', sunday: 'Dimanche' };
+          content += `- ${dayLabels[slot.day]} ${slot.startTime}-${slot.endTime}: ${slot.subject} (${slot.room}) - ${slot.instructor}\n`;
+        });
+        content += '\n';
+      });
+    }
+
+    return {
+      content,
+      sources: ['Recherche d\'Horaires']
+    };
+  } catch (error) {
+    console.error('Error searching schedules:', error);
+    return { content: '', sources: [] };
+  }
+}
+
+// ─────────────────────────────────────────────────
 // 5. STUDENT CONTEXT: Fetch personal academic data
 // ─────────────────────────────────────────────────
 
@@ -551,9 +697,28 @@ export async function queryKnowledgeBase(question, studentId = null) {
       getStudentContext(studentId)
     ]);
 
-    // Combine all contexts
-    const fullContext = [staticCtx.content, dbCtx.content, newsCtx.content].filter(Boolean).join('\n\n');
-    const allSources = [...staticCtx.sources, ...dbCtx.sources, ...newsCtx.sources].filter(Boolean);
+    // Fetch schedule context if available and question might be about schedule
+    let scheduleCtx = { content: '', sources: [] };
+    let searchCtx = { content: '', sources: [] };
+    
+    if (studentCtx?.class?.id) {
+      // Get student's schedule
+      scheduleCtx = await getStudentScheduleContext(studentId, studentCtx.class.id);
+      
+      // Check if question is about schedule
+      const scheduleKeywords = ['schedule', 'emploi du temps', 'horaire', 'classe', 'cours', 'quand', 'when', 'heure', 'time', 'salle', 'room', 'professeur', 'instructor', 'teacher', 'enseignant'];
+      const isScheduleQuestion = scheduleKeywords.some(kw => normalizeText(question).includes(normalizeText(kw)));
+      
+      // If schedule question, search for specific courses/instructors
+      if (isScheduleQuestion) {
+        searchCtx = await searchSchedules(question, studentCtx.class.id);
+      }
+    }
+
+    // Combine all contexts (schedule first if relevant)
+    const contextParts = [scheduleCtx.content, searchCtx.content, staticCtx.content, dbCtx.content, newsCtx.content].filter(Boolean);
+    const fullContext = contextParts.join('\n\n');
+    const allSources = [...scheduleCtx.sources, ...searchCtx.sources, ...staticCtx.sources, ...dbCtx.sources, ...newsCtx.sources].filter(Boolean);
 
     // Generate answer using Groq with enriched context
     const completion = await callGroq([

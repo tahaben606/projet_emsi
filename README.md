@@ -1,4 +1,10 @@
-# 🎓 EMSI Academic Flow: Bridging the Gap in Academic Success
+# 🎓 EMSI Academic Flow
+### *Bridging the Gap in Academic Success through AI and Analytics*
+
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square&logo=prisma)](https://www.prisma.io/)
+[![Z.ai](https://img.shields.io/badge/AI-Z.ai_SDK-blue?style=flat-square)](https://chat.z.ai)
 
 **EMSI Flow** is a sophisticated, AI-powered academic management and risk detection ecosystem. Designed for the modern educational landscape, it combines real-time data analytics with Generative AI to identify students at risk and provide personalized support through a RAG-based (Retrieval-Augmented Generation) Knowledge Assistant.
 
@@ -24,63 +30,46 @@ In large educational institutions, students often feel like just another number.
 - **Digital Attendance & News**: Modern, paperless management of student attendance and official announcements.
 - **Insightful Analytics**: Visualizes distribution of risk levels (Low, Medium, High) to help allocate resources effectively.
 
+---
+
 ## 🛠️ Technology Stack
 
-| Component | Technology |
-| :--- | :--- |
-| **Framework** | [Next.js 16](https://nextjs.org/) (App Router, Turbopack) |
-| **Styling** | [Tailwind CSS 4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) |
-| **Database/ORM** | [Prisma](https://www.prisma.io/) + SQLite |
-| **AI Capabilities** | [Z.ai SDK](https://chat.z.ai) (Generative AI & RAG) |
-| **Data Viz** | [Recharts](https://recharts.org/) |
-| **State/Query** | [Zustand](https://github.com/pmndrs/zustand) + [TanStack Query](https://tanstack.com/query/latest) |
-| **Animations** | [Framer Motion](https://www.framer.com/motion/) |
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Framework** | [Next.js 16](https://nextjs.org/) | App Router, Turbopack, React 19 |
+| **Styling** | [Tailwind CSS 4](https://tailwindcss.com/) | shadcn/ui components, Framer Motion |
+| **Database** | [Prisma](https://www.prisma.io/) | SQLite for development, high-performance ORM |
+| **AI Hub** | [Z.ai SDK](https://chat.z.ai) | Generative AI & RAG capabilities |
+| **Visuals** | [Recharts](https://recharts.org/) | Dynamic and interactive data visualization |
+| **State** | [Zustand](https://github.com/pmndrs/zustand) | Lightweight and scalable state management |
 
 ---
 
 ## 🚦 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v18+)
-- [npm](https://www.npmjs.com/) or [bun](https://bun.sh/)
+- **Node.js**: v18 or higher
+- **Package Manager**: `npm` or `bun`
 
-### Installation
+### Quick Start
+```bash
+# 1. Clone & Enter
+git clone https://github.com/tahaben606/projet_emsi.git && cd projet_emsi
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/tahaben606/projet_emsi.git
-   cd projet_emsi
-   ```
+# 2. Install Dependencies
+npm install
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   # or
-   bun install
-   ```
+# 3. Environment Setup
+# Create .env and add DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL
 
-3. **Set up environment variables**:
-   Create a `.env` file in the root:
-   ```env
-   DATABASE_URL="file:./dev.db"
-   NEXTAUTH_SECRET="your-development-secret"
-   NEXTAUTH_URL="http://localhost:3000"
-   ```
+# 4. Initialize Database
+npx prisma db push && npx prisma db seed
 
-4. **Initialize Database**:
-   ```bash
-   npx prisma db push
-   npx prisma db seed
-   ```
+# 5. Launch
+npm run dev
+```
 
-5. **Run the Development Server**:
-   ```bash
-   npm run dev
-   # or
-   bun run dev
-   ```
-
-Access the application at [http://localhost:3000](http://localhost:3000).
+Visit the app at [localhost:3000](http://localhost:3000).
 
 ---
 
@@ -89,8 +78,8 @@ Access the application at [http://localhost:3000](http://localhost:3000).
 src/
 ├── app/          # Next.js Pages & API Routes
 ├── components/   # UI Library (shadcn) & Feature Components
-├── services/     # AI & Analytics Business Logic
-├── lib/          # Utilities (Prisma client, UI helpers)
+├── services/     # AI (RAG, Planner) & Business Logic
+├── lib/          # Utilities & Database Client
 └── prisma/       # Schema, Migrations & Growth-mode Seed Data
 ```
 

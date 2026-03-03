@@ -14,6 +14,8 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { StudentScheduleView } from '@/components/StudentScheduleView'
+import { ScheduleAdmin } from '@/components/ScheduleAdmin'
 import {
   ResponsiveContainer,
   PieChart,
@@ -186,10 +188,19 @@ function StudentPanel() {
         </CardContent>
       </Card>
 
-      {loading && <div className="flex items-center justify-center py-12"><Activity className="h-8 w-8 animate-spin text-blue-500" /></div>}
-
       {studentDetail && !loading && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <>
+          {/* Student Schedule */}
+          <Card>
+            <CardContent className="pt-6">
+              <StudentScheduleView 
+                classId={studentDetail.class.id}
+                studentName={studentDetail.name}
+              />
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
             {/* Student News Feed */}
             {studentNews && studentNews.news.length > 0 && (
@@ -371,6 +382,7 @@ function StudentPanel() {
             </Card>
           </div>
         </div>
+        </>
       )}
 
       {!selectedStudentId && !loading && (
@@ -538,6 +550,9 @@ function AdminDashboard() {
         <Button variant={activeSection === 'attendance' ? 'default' : 'outline'} onClick={() => setActiveSection('attendance')}>
           <ClipboardCheck className="h-4 w-4 mr-2" />Absences
         </Button>
+        <Button variant={activeSection === 'schedules' ? 'default' : 'outline'} onClick={() => setActiveSection('schedules')}>
+          <Calendar className="h-4 w-4 mr-2" />Horaires
+        </Button>
       </div>
 
       {activeSection === 'attendance' ? (
@@ -669,6 +684,8 @@ function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+      ) : activeSection === 'schedules' ? (
+        <ScheduleAdmin classes={classes} />
       ) : activeSection === 'news' ? (
         <div className="space-y-6">
           {/* News Management Header */}
@@ -679,9 +696,14 @@ function AdminDashboard() {
                   <CardTitle className="flex items-center gap-2"><Newspaper className="h-5 w-5" />Gestion des Annonces</CardTitle>
                   <CardDescription>Créez et gérez les annonces pour les étudiants</CardDescription>
                 </div>
-                <Button onClick={() => setShowNewsForm(!showNewsForm)}>
-                  <Plus className="h-4 w-4 mr-2" />Nouvelle Annonce
-                </Button>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => setActiveTab('horaires')}>
+                    <Calendar className="h-4 w-4 mr-2" />Horaires
+                  </Button>
+                  <Button onClick={() => setShowNewsForm(!showNewsForm)}>
+                    <Plus className="h-4 w-4 mr-2" />Nouvelle Annonce
+                  </Button>
+                </div>
               </div>
             </CardHeader>
           </Card>
@@ -962,6 +984,9 @@ function ClassDetailModal({ classId, onClose }) {
   )
 }
 
+// Schedules Panel Component
+
+
 // Main Page
 export default function Home() {
   const [activeTab, setActiveTab] = useState('student')
@@ -991,8 +1016,8 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
-            <TabsTrigger value="student" className="flex items-center gap-2"><GraduationCap className="h-4 w-4" />Vue Étudiant</TabsTrigger>
+          <TabsList className="grid w-full max-w-2xl grid-cols-2 mb-6">
+            <TabsTrigger value="student" className="flex items-center gap-2"><GraduationCap className="h-4 w-4" />Étudiant</TabsTrigger>
             <TabsTrigger value="admin" className="flex items-center gap-2"><Shield className="h-4 w-4" />Admin</TabsTrigger>
           </TabsList>
           <TabsContent value="student"><StudentPanel /></TabsContent>
