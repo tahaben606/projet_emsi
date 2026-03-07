@@ -1,26 +1,26 @@
-# AI Steering Instructions Guide (Developers Only)
-
-This guide explains how to manage the hidden custom instructions that steer the AI RAG assistant's behavior. These instructions are hardcoded in the source code to ensure they remain invisible to end-users (students and admins).
-
-## Location
-The instructions are located in:
-`[ai-instructions.js](file:///c:/Users/Med Amine/Documents/GitHub/projet_emsi/src/services/ai-instructions.js)`
-
-## How it works
-The `DEVELOPER_CUSTOM_INSTRUCTIONS` constant in that file is automatically imported by the `rag-agent.js` service and appended to every LLM system prompt. 
-
-## Adding Instructions
-To add or modify instructions, simply edit the string in `src/services/ai-instructions.js`.
-
-### Example: "Don't give students their notes"
-If you want to ensure students cannot see their exact grades through the chat, add these rules:
-- `Never share specific grades or numerical notes directly with students.`
-- `Instead of giving exact notes, provide general feedback on performance.`
-
-## Benefits
-- **Security**: No database access or UI required to edit.
-- **Stealth**: Users never see these rules, even in the admin dashboard.
-- **Steering**: Allows developers to maintain strict control over AI boundaries.
-
-> [!IMPORTANT]
-> Always use a clear bullet-point format for the instructions to help the LLM process them correctly.
+#ù ùAùIù ùSùtùeùeùrùiùnùgù ùIùnùsùtùrùuùcùtùiùoùnùsù ùGùuùiùdùeù ù(ùDùeùvùeùlùoùpùeùrùsù ùOùnùlùyù)ùù
+ùù
+ùTùhùiùsù ùgùuùiùdùeù ùeùxùpùlùaùiùnùsù ùhùoùwù ùtùoù ùmùaùnùaùgùeù ùtùhùeù ùhùiùdùdùeùnù ùcùuùsùtùoùmù ùiùnùsùtùrùuùcùtùiùoùnùsù ùtùhùaùtù ùsùtùeùeùrù ùtùhùeù ùAùIù ùRùAùGù ùaùsùsùiùsùtùaùnùtù'ùsù ùbùeùhùaùvùiùoùrù.ù ùTùhùeùsùeù ùiùnùsùtùrùuùcùtùiùoùnùsù ùaùrùeù ùhùaùrùdùcùoùdùeùdù ùiùnù ùtùhùeù ùsùoùuùrùcùeù ùcùoùdùeù ùtùoù ùeùnùsùuùrùeù ùtùhùeùyù ùrùeùmùaùiùnù ùiùnùvùiùsùiùbùlùeù ùtùoù ùeùnùdù-ùuùsùeùrùsù ù(ùsùtùuùdùeùnùtùsù ùaùnùdù ùaùdùmùiùnùsù)ù.ùù
+ùù
+ù#ù#ù ùLùoùcùaùtùiùoùnùù
+ùTùhùeù ùiùnùsùtùrùuùcùtùiùoùnùsù ùaùrùeù ùlùoùcùaùtùeùdù ùiùnù:ùù
+ù`ù[ùaùiù-ùiùnùsùtùrùuùcùtùiùoùnùsù.ùjùsù]ù(ùfùiùlùeù:ù/ù/ù/ùcù:ù/ùUùsùeùrùsù/ùMùeùdù ùAùmùiùnùeù/ùDùoùcùuùmùeùnùtùsù/ùGùiùtùHùuùbù/ùpùrùoùjùeùtù_ùeùmùsùiù/ùsùrùcù/ùsùeùrùvùiùcùeùsù/ùaùiù-ùiùnùsùtùrùuùcùtùiùoùnùsù.ùjùsù)ù`ùù
+ùù
+ù#ù#ù ùHùoùwù ùiùtù ùwùoùrùkùsùù
+ùTùhùeù ù`ùDùEùVùEùLùOùPùEùRù_ùCùUùSùTùOùMù_ùIùNùSùTùRùUùCùTùIùOùNùSù`ù ùcùoùnùsùtùaùnùtù ùiùnù ùtùhùaùtù ùfùiùlùeù ùiùsù ùaùuùtùoùmùaùtùiùcùaùlùlùyù ùiùmùpùoùrùtùeùdù ùbùyù ùtùhùeù ù`ùrùaùgù-ùaùgùeùnùtù.ùjùsù`ù ùsùeùrùvùiùcùeù ùaùnùdù ùaùpùpùeùnùdùeùdù ùtùoù ùeùvùeùrùyù ùLùLùMù ùsùyùsùtùeùmù ùpùrùoùmùpùtù.ù ùù
+ùù
+ù#ù#ù ùAùdùdùiùnùgù ùIùnùsùtùrùuùcùtùiùoùnùsùù
+ùTùoù ùaùdùdù ùoùrù ùmùoùdùiùfùyù ùiùnùsùtùrùuùcùtùiùoùnùsù,ù ùsùiùmùpùlùyù ùeùdùiùtù ùtùhùeù ùsùtùrùiùnùgù ùiùnù ù`ùsùrùcù/ùsùeùrùvùiùcùeùsù/ùaùiù-ùiùnùsùtùrùuùcùtùiùoùnùsù.ùjùsù`ù.ùù
+ùù
+ù#ù#ù#ù ùEùxùaùmùpùlùeù:ù ù"ùDùoùnù'ùtù ùgùiùvùeù ùsùtùuùdùeùnùtùsù ùtùhùeùiùrù ùnùoùtùeùsù"ùù
+ùIùfù ùyùoùuù ùwùaùnùtù ùtùoù ùeùnùsùuùrùeù ùsùtùuùdùeùnùtùsù ùcùaùnùnùoùtù ùsùeùeù ùtùhùeùiùrù ùeùxùaùcùtù ùgùrùaùdùeùsù ùtùhùrùoùuùgùhù ùtùhùeù ùcùhùaùtù,ù ùaùdùdù ùtùhùeùsùeù ùrùuùlùeùsù:ùù
+ù-ù ù`ùNùeùvùeùrù ùsùhùaùrùeù ùsùpùeùcùiùfùiùcù ùgùrùaùdùeùsù ùoùrù ùnùuùmùeùrùiùcùaùlù ùnùoùtùeùsù ùdùiùrùeùcùtùlùyù ùwùiùtùhù ùsùtùuùdùeùnùtùsù.ù`ùù
+ù-ù ù`ùIùnùsùtùeùaùdù ùoùfù ùgùiùvùiùnùgù ùeùxùaùcùtù ùnùoùtùeùsù,ù ùpùrùoùvùiùdùeù ùgùeùnùeùrùaùlù ùfùeùeùdùbùaùcùkù ùoùnù ùpùeùrùfùoùrùmùaùnùcùeù.ù`ùù
+ùù
+ù#ù#ù ùBùeùnùeùfùiùtùsùù
+ù-ù ù*ù*ùSùeùcùuùrùiùtùyù*ù*ù:ù ùNùoù ùdùaùtùaùbùaùsùeù ùaùcùcùeùsùsù ùoùrù ùUùIù ùrùeùqùuùiùrùeùdù ùtùoù ùeùdùiùtù.ùù
+ù-ù ù*ù*ùSùtùeùaùlùtùhù*ù*ù:ù ùUùsùeùrùsù ùnùeùvùeùrù ùsùeùeù ùtùhùeùsùeù ùrùuùlùeùsù,ù ùeùvùeùnù ùiùnù ùtùhùeù ùaùdùmùiùnù ùdùaùsùhùbùoùaùrùdù.ùù
+ù-ù ù*ù*ùSùtùeùeùrùiùnùgù*ù*ù:ù ùAùlùlùoùwùsù ùdùeùvùeùlùoùpùeùrùsù ùtùoù ùmùaùiùnùtùaùiùnù ùsùtùrùiùcùtù ùcùoùnùtùrùoùlù ùoùvùeùrù ùAùIù ùbùoùuùnùdùaùrùiùeùsù.ùù
+ùù
+ù>ù ù[ù!ùIùMùPùOùRùTùAùNùTù]ùù
+ù>ù ùAùlùwùaùyùsù ùuùsùeù ùaù ùcùlùeùaùrù ùbùuùlùlùeùtù-ùpùoùiùnùtù ùfùoùrùmùaùtù ùfùoùrù ùtùhùeù ùiùnùsùtùrùuùcùtùiùoùnùsù ùtùoù ùhùeùlùpù ùtùhùeù ùLùLùMù ùpùrùoùcùeùsùsù ùtùhùeùmù ùcùoùrùrùeùcùtùlùyù.ùù

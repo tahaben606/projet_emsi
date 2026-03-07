@@ -1,5 +1,5 @@
 // EMSI Flow - Database Seed Script
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
@@ -230,13 +230,65 @@ async function main() {
   let studentCount = 0;
   const classCodes = ['1GI', '2GI', '1IA', '2IA', '1CYB', '2CYB', '1BTS', '2BTS'];
 
+  // Create Taha Benissaouia first (1st year Development - 1GI class)
+  const tahaClass = classMap['1GI'];
+  const tahaSubjects = subjects.filter(s => s.classCode === '1GI');
+  const tahaSubjectIds = tahaSubjects.map(s => subjectMap[s.code]);
+
+  const taha = await prisma.student.create({
+    data: {
+      name: 'Taha BENISSAOUIA',
+      email: 'taha.benissaouia@emsi.ma',
+      classId: tahaClass
+    }
+  });
+
+  console.log(`👤 Created student: Taha BENISSAOUIA (${taha.email})`);
+
+  // Create high performance grades for Taha (strong student)
+  const tahaGrades = generateGrades(studentCount, tahaSubjectIds, 'high');
+  for (const grade of tahaGrades) {
+    await prisma.grade.create({
+      data: {
+        studentId: taha.id,
+        subjectId: grade.subjectId,
+        value: grade.value,
+        maxValue: grade.maxValue,
+        type: grade.type,
+        date: grade.date
+      }
+    });
+  }
+
+  // Create excellent attendance for Taha
+  const tahaAttendance = generateAttendance(studentCount, tahaSubjectIds, 'high');
+  for (const att of tahaAttendance) {
+    try {
+      await prisma.attendance.create({
+        data: {
+          studentId: taha.id,
+          subjectId: att.subjectId,
+          date: att.date,
+          status: att.status
+        }
+      });
+    } catch {
+      // Skip duplicate dates
+    }
+  }
+
+  studentCount++;
+
   for (const classCode of classCodes) {
     const classId = classMap[classCode];
     const classSubjects = subjects.filter(s => s.classCode === classCode);
     const subjectIds = classSubjects.map(s => subjectMap[s.code]);
 
+    // Skip 1GI since we already created Taha there
+    const startIndex = classCode === '1GI' ? 1 : 0;
+
     // 20 students per class
-    for (let i = 0; i < 20; i++) {
+    for (let i = startIndex; i < 20; i++) {
       const studentData = generateStudent(studentCount, classCode);
       const performance = performances[i];
 

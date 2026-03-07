@@ -33,6 +33,7 @@ model Class {
   year        Int
   students    Student[]
   subjects    Subject[]
+  schedules   Schedule[]
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 }
@@ -46,6 +47,7 @@ model Subject {
   coefficient Float    @default(1.0)
   grades      Grade[]
   attendance  Attendance[]
+  schedules   Schedule[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -127,4 +129,21 @@ model News {
   authorName     String?  // Admin who posted
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+// Class Schedules
+model Schedule {
+  id        String   @id @default(cuid())
+  classId   String
+  class     Class    @relation(fields: [classId], references: [id])
+  subjectId String?
+  subject   Subject? @relation(fields: [subjectId], references: [id])
+  dayOfWeek Int      // 0=Sunday, 1=Monday, ..., 6=Saturday
+  startTime String   // "08:00"
+  endTime   String   // "09:30"
+  room      String?
+  type      String   @default("course") // "course", "td", "tp", "exam"
+  teacherName String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
