@@ -1,0 +1,1198 @@
+﻿{
+  "id": "cmmg7iqfm001xfp5o87u3a77z",
+  "name": "Taha BENISSAOUIA",
+  "email": "taha.benissaouia@emsi.ma",
+  "avatar": null,
+  "classId": "cmmg7iq6m0000fp5owzhpkti9",
+  "createdAt": "2026-03-07T10:55:11.699Z",
+  "updatedAt": "2026-03-07T10:55:11.699Z",
+  "class": {
+    "id": "cmmg7iq6m0000fp5owzhpkti9",
+    "name": "1├¿re ann├®e GI",
+    "code": "1GI",
+    "department": "G├®nie Informatique",
+    "year": 1,
+    "createdAt": "2026-03-07T10:55:11.373Z",
+    "updatedAt": "2026-03-07T10:55:11.373Z",
+    "schedules": [
+      {
+        "id": "cmmgr4rnl0001fpesqyv5x266",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iq950009fp5oda7l7ici",
+        "dayOfWeek": 1,
+        "startTime": "08:30",
+        "endTime": "10:15",
+        "room": "A101",
+        "type": "course",
+        "teacherName": "Pr. Alami",
+        "createdAt": "2026-03-07T20:04:12.414Z",
+        "updatedAt": "2026-03-07T20:04:12.414Z",
+        "subject": {
+          "id": "cmmg7iq950009fp5oda7l7ici",
+          "name": "Math├®matiques",
+          "code": "MATH101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 3,
+          "createdAt": "2026-03-07T10:55:11.463Z",
+          "updatedAt": "2026-03-07T10:55:11.463Z"
+        }
+      },
+      {
+        "id": "cmmgr4ro20003fpesdkh5fke1",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+        "dayOfWeek": 1,
+        "startTime": "10:30",
+        "endTime": "12:15",
+        "room": "Lab 1",
+        "type": "course",
+        "teacherName": "Pr. Benali",
+        "createdAt": "2026-03-07T20:04:12.435Z",
+        "updatedAt": "2026-03-07T20:04:12.435Z",
+        "subject": {
+          "id": "cmmg7iq9e000bfp5oimzzxy0r",
+          "name": "Algorithmique",
+          "code": "ALGO101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 2.5,
+          "createdAt": "2026-03-07T10:55:11.474Z",
+          "updatedAt": "2026-03-07T10:55:11.474Z"
+        }
+      },
+      {
+        "id": "cmmgr4roc0005fpesabyrstp9",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+        "dayOfWeek": 2,
+        "startTime": "08:30",
+        "endTime": "10:15",
+        "room": "Lab 2",
+        "type": "course",
+        "teacherName": "Pr. Cherkaoui",
+        "createdAt": "2026-03-07T20:04:12.444Z",
+        "updatedAt": "2026-03-07T20:04:12.444Z",
+        "subject": {
+          "id": "cmmg7iq9n000dfp5ovlyuvl27",
+          "name": "Programmation C",
+          "code": "PRG101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 2.5,
+          "createdAt": "2026-03-07T10:55:11.483Z",
+          "updatedAt": "2026-03-07T10:55:11.483Z"
+        }
+      },
+      {
+        "id": "cmmgr4rol0007fpesc8ldnivi",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+        "dayOfWeek": 2,
+        "startTime": "10:30",
+        "endTime": "12:15",
+        "room": "B205",
+        "type": "course",
+        "teacherName": "Pr. El Idrissi",
+        "createdAt": "2026-03-07T20:04:12.454Z",
+        "updatedAt": "2026-03-07T20:04:12.454Z",
+        "subject": {
+          "id": "cmmg7iq9w000ffp5okxmfdi3y",
+          "name": "Physique",
+          "code": "PHY101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 2,
+          "createdAt": "2026-03-07T10:55:11.492Z",
+          "updatedAt": "2026-03-07T10:55:11.492Z"
+        }
+      },
+      {
+        "id": "cmmgr4rov0009fpesyvku0syo",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+        "dayOfWeek": 3,
+        "startTime": "08:30",
+        "endTime": "12:15",
+        "room": "C104",
+        "type": "course",
+        "teacherName": "Pr. Fassi",
+        "createdAt": "2026-03-07T20:04:12.464Z",
+        "updatedAt": "2026-03-07T20:04:12.464Z",
+        "subject": {
+          "id": "cmmg7iqa3000hfp5o2pwfynz7",
+          "name": "Anglais",
+          "code": "ENG101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 1.5,
+          "createdAt": "2026-03-07T10:55:11.499Z",
+          "updatedAt": "2026-03-07T10:55:11.499Z"
+        }
+      },
+      {
+        "id": "cmmgr4rp5000bfpesmkmit91d",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iq950009fp5oda7l7ici",
+        "dayOfWeek": 4,
+        "startTime": "14:00",
+        "endTime": "15:45",
+        "room": "A101",
+        "type": "course",
+        "teacherName": "Pr. Alami",
+        "createdAt": "2026-03-07T20:04:12.474Z",
+        "updatedAt": "2026-03-07T20:04:12.474Z",
+        "subject": {
+          "id": "cmmg7iq950009fp5oda7l7ici",
+          "name": "Math├®matiques",
+          "code": "MATH101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 3,
+          "createdAt": "2026-03-07T10:55:11.463Z",
+          "updatedAt": "2026-03-07T10:55:11.463Z"
+        }
+      },
+      {
+        "id": "cmmgr4rpe000dfpes0ci0a3d1",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+        "dayOfWeek": 5,
+        "startTime": "09:00",
+        "endTime": "12:00",
+        "room": "Lab 1",
+        "type": "course",
+        "teacherName": "Pr. Benali",
+        "createdAt": "2026-03-07T20:04:12.482Z",
+        "updatedAt": "2026-03-07T20:04:12.482Z",
+        "subject": {
+          "id": "cmmg7iq9e000bfp5oimzzxy0r",
+          "name": "Algorithmique",
+          "code": "ALGO101",
+          "classId": "cmmg7iq6m0000fp5owzhpkti9",
+          "coefficient": 2.5,
+          "createdAt": "2026-03-07T10:55:11.474Z",
+          "updatedAt": "2026-03-07T10:55:11.474Z"
+        }
+      }
+    ]
+  },
+  "grades": [
+    {
+      "id": "cmmg7iqfw001zfp5oer2dooib",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "value": 32.9,
+      "maxValue": 40,
+      "type": "project",
+      "date": "2026-01-06T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.709Z",
+      "updatedAt": "2026-03-07T10:55:11.709Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqg50021fp5ofv7jfysn",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "value": 13.5,
+      "maxValue": 20,
+      "type": "project",
+      "date": "2026-01-24T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.718Z",
+      "updatedAt": "2026-03-07T10:55:11.718Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqge0023fp5onl2jfyza",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "value": 17.3,
+      "maxValue": 20,
+      "type": "project",
+      "date": "2026-02-05T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.726Z",
+      "updatedAt": "2026-03-07T10:55:11.726Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqgn0025fp5om870v2lg",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "value": 17.6,
+      "maxValue": 20,
+      "type": "quiz",
+      "date": "2026-02-18T10:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.735Z",
+      "updatedAt": "2026-03-07T10:55:11.735Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqgu0027fp5oxj4qkza7",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "value": 88.3,
+      "maxValue": 100,
+      "type": "exam",
+      "date": "2026-02-01T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.743Z",
+      "updatedAt": "2026-03-07T10:55:11.743Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqh20029fp5o2h7cu33q",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "value": 18.8,
+      "maxValue": 20,
+      "type": "quiz",
+      "date": "2026-02-18T10:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.750Z",
+      "updatedAt": "2026-03-07T10:55:11.750Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqh9002bfp5oarwegja2",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "value": 15.2,
+      "maxValue": 20,
+      "type": "assignment",
+      "date": "2026-01-23T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.757Z",
+      "updatedAt": "2026-03-07T10:55:11.757Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqhh002dfp5okhkzwk57",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "value": 16.8,
+      "maxValue": 20,
+      "type": "quiz",
+      "date": "2026-02-03T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.766Z",
+      "updatedAt": "2026-03-07T10:55:11.766Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqhp002ffp5ok8kb9fws",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "value": 13.6,
+      "maxValue": 20,
+      "type": "assignment",
+      "date": "2026-02-20T10:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.774Z",
+      "updatedAt": "2026-03-07T10:55:11.774Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqhx002hfp5oshkzvkml",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "value": 16.9,
+      "maxValue": 20,
+      "type": "project",
+      "date": "2026-01-08T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.781Z",
+      "updatedAt": "2026-03-07T10:55:11.781Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqi5002jfp5o1pb0ob0h",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "value": 16.8,
+      "maxValue": 20,
+      "type": "assignment",
+      "date": "2026-01-23T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.790Z",
+      "updatedAt": "2026-03-07T10:55:11.790Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqic002lfp5ohptk3i9k",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "value": 18.8,
+      "maxValue": 20,
+      "type": "exam",
+      "date": "2026-02-04T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.796Z",
+      "updatedAt": "2026-03-07T10:55:11.796Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqij002nfp5o4tdm6ge8",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "value": 14.6,
+      "maxValue": 20,
+      "type": "assignment",
+      "date": "2026-02-21T10:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.804Z",
+      "updatedAt": "2026-03-07T10:55:11.804Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqir002pfp5oyagia2kl",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "value": 84.6,
+      "maxValue": 100,
+      "type": "exam",
+      "date": "2026-02-02T09:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.812Z",
+      "updatedAt": "2026-03-07T10:55:11.812Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqj0002rfp5ogix5r49z",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "value": 18.8,
+      "maxValue": 20,
+      "type": "project",
+      "date": "2026-02-20T10:55:11.705Z",
+      "createdAt": "2026-03-07T10:55:11.820Z",
+      "updatedAt": "2026-03-07T10:55:11.820Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    }
+  ],
+  "attendance": [
+    {
+      "id": "cmmg7iqr6004rfp5o2o30myxs",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-01-17T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.115Z",
+      "updatedAt": "2026-03-07T10:55:12.115Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqq4004hfp5o5vqpqg2q",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-01-24T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.076Z",
+      "updatedAt": "2026-03-07T10:55:12.076Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqp10047fp5o1frjcpso",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-01-31T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.038Z",
+      "updatedAt": "2026-03-07T10:55:12.038Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqnx003xfp5o518jv0bo",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-02-07T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.998Z",
+      "updatedAt": "2026-03-07T10:55:11.998Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqms003nfp5odlamie87",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-02-14T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.956Z",
+      "updatedAt": "2026-03-07T10:55:11.956Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqln003dfp5ougu6f1ab",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-02-21T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.916Z",
+      "updatedAt": "2026-03-07T10:55:11.916Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqke0033fp5ofqid6ahv",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-02-28T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.871Z",
+      "updatedAt": "2026-03-07T10:55:11.871Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqj9002tfp5oq8t30d96",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq950009fp5oda7l7ici",
+      "date": "2026-03-07T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.829Z",
+      "updatedAt": "2026-03-07T10:55:11.829Z",
+      "subject": {
+        "id": "cmmg7iq950009fp5oda7l7ici",
+        "name": "Math├®matiques",
+        "code": "MATH101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 3,
+        "createdAt": "2026-03-07T10:55:11.463Z",
+        "updatedAt": "2026-03-07T10:55:11.463Z"
+      }
+    },
+    {
+      "id": "cmmg7iqre004tfp5o4d7e4z4s",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-01-17T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.123Z",
+      "updatedAt": "2026-03-07T10:55:12.123Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqqb004jfp5o6c8dr9b0",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-01-24T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.083Z",
+      "updatedAt": "2026-03-07T10:55:12.083Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqpb0049fp5obgzc71yj",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-01-31T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.047Z",
+      "updatedAt": "2026-03-07T10:55:12.047Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqo6003zfp5otbb6y41w",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-02-07T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.006Z",
+      "updatedAt": "2026-03-07T10:55:12.006Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqn0003pfp5ot0cdyri5",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-02-14T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.964Z",
+      "updatedAt": "2026-03-07T10:55:11.964Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqlx003ffp5o4led40af",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-02-21T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.926Z",
+      "updatedAt": "2026-03-07T10:55:11.926Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqko0035fp5ok2ak3xdx",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-02-28T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.880Z",
+      "updatedAt": "2026-03-07T10:55:11.880Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqjh002vfp5ocifevan2",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9e000bfp5oimzzxy0r",
+      "date": "2026-03-07T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.838Z",
+      "updatedAt": "2026-03-07T10:55:11.838Z",
+      "subject": {
+        "id": "cmmg7iq9e000bfp5oimzzxy0r",
+        "name": "Algorithmique",
+        "code": "ALGO101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.474Z",
+        "updatedAt": "2026-03-07T10:55:11.474Z"
+      }
+    },
+    {
+      "id": "cmmg7iqrk004vfp5o35s9aegz",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-01-17T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.129Z",
+      "updatedAt": "2026-03-07T10:55:12.129Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqqi004lfp5odytiwu6f",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-01-24T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.090Z",
+      "updatedAt": "2026-03-07T10:55:12.090Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqph004bfp5o185z43qr",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-01-31T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.053Z",
+      "updatedAt": "2026-03-07T10:55:12.053Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqof0041fp5oux6ovbkl",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-02-07T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.016Z",
+      "updatedAt": "2026-03-07T10:55:12.016Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqn7003rfp5o0c98gqya",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-02-14T09:55:11.827Z",
+      "status": "late",
+      "createdAt": "2026-03-07T10:55:11.971Z",
+      "updatedAt": "2026-03-07T10:55:11.971Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqm6003hfp5octayt5zf",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-02-21T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.934Z",
+      "updatedAt": "2026-03-07T10:55:11.934Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqkw0037fp5ov9jcukcc",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-02-28T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.888Z",
+      "updatedAt": "2026-03-07T10:55:11.888Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqjp002xfp5o3yq0ypcz",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9n000dfp5ovlyuvl27",
+      "date": "2026-03-07T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.845Z",
+      "updatedAt": "2026-03-07T10:55:11.845Z",
+      "subject": {
+        "id": "cmmg7iq9n000dfp5ovlyuvl27",
+        "name": "Programmation C",
+        "code": "PRG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2.5,
+        "createdAt": "2026-03-07T10:55:11.483Z",
+        "updatedAt": "2026-03-07T10:55:11.483Z"
+      }
+    },
+    {
+      "id": "cmmg7iqrs004xfp5od4y95tcj",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-01-17T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.136Z",
+      "updatedAt": "2026-03-07T10:55:12.136Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqqq004nfp5o0mmyswqq",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-01-24T09:55:11.827Z",
+      "status": "late",
+      "createdAt": "2026-03-07T10:55:12.099Z",
+      "updatedAt": "2026-03-07T10:55:12.099Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqpp004dfp5oft4rvvd8",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-01-31T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.062Z",
+      "updatedAt": "2026-03-07T10:55:12.062Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqom0043fp5oda4gfcnt",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-02-07T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.023Z",
+      "updatedAt": "2026-03-07T10:55:12.023Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqng003tfp5oqbgn2j5c",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-02-14T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.980Z",
+      "updatedAt": "2026-03-07T10:55:11.980Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqmd003jfp5owrdf4m7w",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-02-21T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.941Z",
+      "updatedAt": "2026-03-07T10:55:11.941Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iql50039fp5ow8xoi022",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-02-28T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.897Z",
+      "updatedAt": "2026-03-07T10:55:11.897Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqjw002zfp5oezxfntxn",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iq9w000ffp5okxmfdi3y",
+      "date": "2026-03-07T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.853Z",
+      "updatedAt": "2026-03-07T10:55:11.853Z",
+      "subject": {
+        "id": "cmmg7iq9w000ffp5okxmfdi3y",
+        "name": "Physique",
+        "code": "PHY101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 2,
+        "createdAt": "2026-03-07T10:55:11.492Z",
+        "updatedAt": "2026-03-07T10:55:11.492Z"
+      }
+    },
+    {
+      "id": "cmmg7iqs0004zfp5ob15d2vj7",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-01-17T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.144Z",
+      "updatedAt": "2026-03-07T10:55:12.144Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqqz004pfp5o529qywzz",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-01-24T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.108Z",
+      "updatedAt": "2026-03-07T10:55:12.108Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqpw004ffp5ob7e0t84t",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-01-31T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.068Z",
+      "updatedAt": "2026-03-07T10:55:12.068Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqov0045fp5otvsdll7i",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-02-07T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:12.031Z",
+      "updatedAt": "2026-03-07T10:55:12.031Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqnn003vfp5oez72l3l5",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-02-14T09:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.988Z",
+      "updatedAt": "2026-03-07T10:55:11.988Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqmk003lfp5o1c0gpwbi",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-02-21T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.948Z",
+      "updatedAt": "2026-03-07T10:55:11.948Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqle003bfp5oasugcb77",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-02-28T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.907Z",
+      "updatedAt": "2026-03-07T10:55:11.907Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    },
+    {
+      "id": "cmmg7iqk50031fp5odsnzpgzw",
+      "studentId": "cmmg7iqfm001xfp5o87u3a77z",
+      "subjectId": "cmmg7iqa3000hfp5o2pwfynz7",
+      "date": "2026-03-07T10:55:11.827Z",
+      "status": "present",
+      "createdAt": "2026-03-07T10:55:11.862Z",
+      "updatedAt": "2026-03-07T10:55:11.862Z",
+      "subject": {
+        "id": "cmmg7iqa3000hfp5o2pwfynz7",
+        "name": "Anglais",
+        "code": "ENG101",
+        "classId": "cmmg7iq6m0000fp5owzhpkti9",
+        "coefficient": 1.5,
+        "createdAt": "2026-03-07T10:55:11.499Z",
+        "updatedAt": "2026-03-07T10:55:11.499Z"
+      }
+    }
+  ]
+}

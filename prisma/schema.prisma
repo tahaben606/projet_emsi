@@ -147,3 +147,14 @@ model Schedule {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Authentication & Users
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // Hashed
+  name      String
+  role      String   @default("student") // "admin", "teacher", "student", "coordinator"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
