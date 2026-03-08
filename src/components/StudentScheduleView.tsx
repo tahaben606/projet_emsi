@@ -7,13 +7,14 @@ import { Clock, MapPin } from 'lucide-react'
 
 interface Session {
   id?: string
-  subject?: { name: string }
+  subject?: { id: string; name: string; code: string }
   type: string
-  date: string
+  dayOfWeek: number
   startTime: string
   endTime: string
-  room: string
-  teacher?: { name: string }
+  room?: string
+  teacherName?: string
+  class?: { name: string }
 }
 
 interface StudentScheduleViewProps {
@@ -55,13 +56,14 @@ export default function StudentScheduleView({ classId, studentName }: StudentSch
   }
 
   const groupScheduleByDay = (schedules: Session[]) => {
+    const DAYS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
     const grouped: Record<string, Session[]> = {}
     schedules.forEach((session) => {
-      const date = new Date(session.date).toLocaleDateString('fr-FR')
-      if (!grouped[date]) {
-        grouped[date] = []
+      const dayName = DAYS[session.dayOfWeek]
+      if (!grouped[dayName]) {
+        grouped[dayName] = []
       }
-      grouped[date].push(session)
+      grouped[dayName].push(session)
     })
     return grouped
   }
@@ -113,11 +115,11 @@ export default function StudentScheduleView({ classId, studentName }: StudentSch
                           </div>
                           <div className="flex items-center gap-2 text-sm text-gray-600">
                             <MapPin className="w-4 h-4" />
-                            <span>Salle {session.room}</span>
+                            <span>Salle {session.room || 'TBD'}</span>
                           </div>
-                          {session.teacher && (
+                          {session.teacherName && (
                             <div className="text-sm text-gray-700 font-medium">
-                              👨‍🏫 {session.teacher.name}
+                              👨‍🏫 {session.teacherName}
                             </div>
                           )}
                         </div>

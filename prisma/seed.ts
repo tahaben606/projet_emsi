@@ -1,5 +1,6 @@
 // EMSI Flow - Database Seed Script
 const { PrismaClient } = require('@prisma/client');
+const bcrypt = require('bcryptjs');
 
 const prisma = new PrismaClient();
 
@@ -195,6 +196,8 @@ async function main() {
   await prisma.class.deleteMany();
   await prisma.knowledgeDocument.deleteMany();
   await prisma.systemSettings.deleteMany();
+  await prisma.schedule.deleteMany();
+  await prisma.user.deleteMany();
 
   console.log('✅ Cleaned existing data');
 
@@ -230,20 +233,20 @@ async function main() {
   let studentCount = 0;
   const classCodes = ['1GI', '2GI', '1IA', '2IA', '1CYB', '2CYB', '1BTS', '2BTS'];
 
-  // Create Taha Benissaouia first (1st year Development - 1GI class)
+  // Create Taha Ben first (1st year GI - 1GI class)
   const tahaClass = classMap['1GI'];
   const tahaSubjects = subjects.filter(s => s.classCode === '1GI');
   const tahaSubjectIds = tahaSubjects.map(s => subjectMap[s.code]);
 
   const taha = await prisma.student.create({
     data: {
-      name: 'Taha BENISSAOUIA',
-      email: 'taha.benissaouia@emsi.ma',
+      name: 'taha ben',
+      email: 'taha.ben@emsi.ma',
       classId: tahaClass
     }
   });
 
-  console.log(`👤 Created student: Taha BENISSAOUIA (${taha.email})`);
+  console.log(`👤 Created student: taha ben (${taha.email})`);
 
   // Create high performance grades for Taha (strong student)
   const tahaGrades = generateGrades(studentCount, tahaSubjectIds, 'high');
@@ -453,6 +456,48 @@ async function main() {
     });
   }
   console.log(`🆕 Created ${newsItems.length} news items`);
+
+  // Create Users for Authentication
+  console.log('🔐 Seeding users for authentication...');
+
+  const hashedPassword = await bcrypt.hash('Admin@2026', 10);
+  const studentPassword = await bcrypt.hash('Student@2026', 10);
+  const teacherPassword = await bcrypt.hash('Teacher@2026', 10);
+  const directorPassword = await bcrypt.hash('Director@2026', 10);
+  const coordinatorPassword = await bcrypt.hash('Coordinator@2026', 10);
+
+  const users = [
+    { name: 'Admin EMSI', email: 'admin@emsi.ma', password: hashedPassword, role: 'ADMIN' },
+    { name: 'Directeur', email: 'director@emsi.ma', password: directorPassword, role: 'ADMIN' },
+    { name: 'Coordinateur', email: 'coordinator@emsi.ma', password: coordinatorPassword, role: 'COORDINATOR' },
+    { name: 'Professeur 1', email: 'teacher1@emsi.ma', password: teacherPassword, role: 'TEACHER' },
+    { name: 'taha ben', email: 'taha.ben@emsi.ma', password: studentPassword, role: 'STUDENT' }
+  ];
+
+  for (const user of users) {
+    await prisma.user.upsert({
+      where: { email: user.email },
+      update: {},
+      create: user
+    });
+  }
+
+  // Seed some random students as users too
+  for (let i = 1; i <= 5; i++) {
+    const studentNumber = String(i).padStart(4, '0');
+    await prisma.user.upsert({
+      where: { email: `student${studentNumber}@emsi.ma` },
+      update: {},
+      create: {
+        name: `Student ${studentNumber}`,
+        email: `student${studentNumber}@emsi.ma`,
+        password: studentPassword,
+        role: 'STUDENT'
+      }
+    });
+  }
+
+  console.log('✅ Users seeded successfully');
 
   console.log('✅ Database seed completed!');
 }

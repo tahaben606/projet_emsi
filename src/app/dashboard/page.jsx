@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import StudentScheduleView from '@/components/StudentScheduleView'
+import { WeekScheduleView } from '@/components/WeekScheduleView'
 import ScheduleAdmin from '@/components/ScheduleAdmin'
 import {
   ResponsiveContainer,
@@ -128,7 +129,7 @@ function StudentPanel({ userRole, userEmail }) {
   const [error, setError] = useState(null)
   const chatEndRef = useRef(null)
 
-  const isStudent = userRole === 'STUDENT'
+  const isStudent = userRole?.toUpperCase() === 'STUDENT'
 
   // Fetch students list (only for admins/teachers)
   useEffect(() => {
@@ -263,7 +264,7 @@ function StudentPanel({ userRole, userEmail }) {
           {/* Student Schedule */}
           <Card>
             <CardContent className="pt-6">
-              <StudentScheduleView
+              <WeekScheduleView
                 classId={studentDetail.class.id}
                 studentName={studentDetail.name}
               />
@@ -779,7 +780,7 @@ function AdminDashboard() {
                   <AlertDescription>No classes available. Please check back later.</AlertDescription>
                 </Alert>
               ) : (
-                <StudentScheduleView
+                <WeekScheduleView
                   classId={classes[0]?.id}
                   studentName="Student"
                 />
