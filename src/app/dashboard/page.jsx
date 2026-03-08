@@ -212,6 +212,7 @@ function StudentPanel({ userRole, userEmail }) {
   const handleSendMessage = async () => {
     if (!chatInput.trim() || chatLoading) return
     const userMessage = { role: 'user', content: chatInput, timestamp: new Date() }
+    const messageToSend = chatInput // Save message before clearing input
     setChatMessages(prev => [...prev, userMessage])
     setChatInput('')
     setChatLoading(true)
@@ -219,7 +220,7 @@ function StudentPanel({ userRole, userEmail }) {
       const res = await fetch('/api/ai/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: chatInput, studentId: selectedStudentId, messages: [...chatMessages, userMessage].map(m => ({ role: m.role, content: m.content })) })
+        body: JSON.stringify({ message: messageToSend, studentId: selectedStudentId, messages: [...chatMessages, userMessage].map(m => ({ role: m.role, content: m.content })) })
       })
       const data = await res.json()
       setChatMessages(prev => [...prev, { role: 'assistant', content: data.response, citations: data.citations, timestamp: new Date() }])

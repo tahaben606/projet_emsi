@@ -219,44 +219,6 @@ export default function WeekScheduleView({ classId, studentName }: WeekScheduleV
           )}
         </CardContent>
       </Card>
-
-      {/* Quick Stats */}
-      <Card className="shadow-lg bg-gradient-to-r from-blue-50 to-indigo-50">
-        <CardContent className="pt-6">
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-4 text-center">
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-blue-600">
-                {schedules.length}
-              </div>
-              <div className="text-xs md:text-sm text-gray-600">Cours/semaine</div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-purple-600">
-                {schedules.filter(s => s.type === 'course').length}
-              </div>
-              <div className="text-xs md:text-sm text-gray-600">Cours</div>
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-green-600">
-                {schedules.filter(s => s.type === 'tp').length}
-              </div>
-              <div className="text-xs md:text-sm text-gray-600">TP</div>
-            </div>
-            <div className="hidden md:block">
-              <div className="text-2xl md:text-3xl font-bold text-purple-600">
-                {schedules.filter(s => s.type === 'td').length}
-              </div>
-              <div className="text-xs md:text-sm text-gray-600">TD</div>
-            </div>
-            <div className="hidden md:block">
-              <div className="text-2xl md:text-3xl font-bold text-red-600">
-                {schedules.filter(s => s.type === 'exam').length}
-              </div>
-              <div className="text-xs md:text-sm text-gray-600">Examen</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }

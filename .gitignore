@@ -49,3 +49,23 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Development utility scripts (should not be in production)
+# Note: scripts/ directory is safe, only individual scripts are excluded
+verify_schedules.js
+generate_schedules.js
+fetch_taha.js
+
+# Data files (development only)
+/data/student_data.json
+/data/student_complete_data.json
+/data/student_complete_data_utf8.json
+
+# Logs directory
+/logs/
+seed_error.log
+dev.log
+server.log
+
+# Config backups
+/config/.env.backup

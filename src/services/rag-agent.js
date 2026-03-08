@@ -184,10 +184,11 @@ const KNOWLEDGE_CONTENT = `
 const SYNONYM_MAP = {
   'note': ['grade', 'grades', 'notes', 'score', 'scores', 'notation', 'moyenne', 'average', 'mark', 'marks', 'résultat', 'resultat'],
   'absence': ['attendance', 'absent', 'absences', 'présence', 'presence', 'assiduité', 'assiduite', 'retard', 'late'],
-  'examen': ['exam', 'exams', 'examens', 'test', 'tests', 'contrôle', 'controle', 'partiel', 'partiels', 'finals', 'midterm', 'rattrapage'],
+  'examen': ['exam', 'exams', 'examens', 'test', 'tests', 'contrôle', 'controle', 'partiel', 'partiels', 'finals', 'midterm', 'rattrapage', 'épreuve'],
+  'emploi_du_temps': ['emploi du temps', 'schedule', 'horaire', 'planning', 'timetable', 'cours', 'classe', 'classe', 'td', 'tp', 'session', 'séance'],
   'inscription': ['register', 'registration', 'enroll', 'enrollment', 'inscrire', 'cours'],
   'bourse': ['scholarship', 'scholarships', 'financial', 'aide', 'aid', 'financement', 'bursary'],
-  'calendrier': ['calendar', 'date', 'dates', 'deadline', 'deadlines', 'schedule', 'planning', 'emploi du temps'],
+  'calendrier': ['calendar', 'date', 'dates', 'deadline', 'deadlines', 'cette semaine', 'this week', 'semaine', 'week', 'quand', 'when'],
   'tutorat': ['tutor', 'tutoring', 'help', 'support', 'aide', 'soutien', 'accompagnement', 'ressources'],
   'bibliothèque': ['library', 'bibliothèque', 'bibliotheque', 'livres', 'books'],
   'probation': ['probation', 'avertissement', 'warning', 'suspension', 'renvoi', 'exclusion'],
@@ -195,7 +196,7 @@ const SYNONYM_MAP = {
   'conduite': ['conduct', 'plagiat', 'plagiarism', 'intégrité', 'integrity', 'règlement', 'reglement', 'discipline'],
   'contact': ['contact', 'téléphone', 'telephone', 'email', 'mail', 'appeler', 'joindre'],
   'stage': ['stage', 'internship', 'pfe', 'pfa', 'projet', 'experience', 'entreprise', 'convention'],
-  'informatique': ['it', 'wifi', 'internet', 'mot de passe', 'password', 'moodle', 'teams', 'office', 'lms', 'connexion'],
+  'informatique': ['it', 'wifi', 'internet', 'moodle', 'teams', 'office', 'lms', 'connexion'],
   'vie_etudiante': ['club', 'bde', 'extracurricular', 'sport', 'événement', 'event', 'fête', 'hackathon'],
   'international': ['international', 'échange', 'exchange', 'erasmus', 'étranger', 'etranger', 'double diplôme', 'diplome', 'canada', 'france'],
   'finance': ['frais', 'paiement', 'payment', 'tuition', 'scolarité', 'scolarite', 'argent', 'prix', 'coût', 'cout', 'tranche', 'mensualité'],
@@ -398,7 +399,14 @@ async function getStudentContext(studentId) {
     const student = await prisma.student.findUnique({
       where: { id: studentId },
       include: {
-        class: true,
+        class: {
+          include: {
+            schedules: {
+              include: { subject: true },
+              orderBy: [{ dayOfWeek: 'asc' }, { startTime: 'asc' }]
+            }
+          }
+        },
         grades: {
           include: { subject: true },
           orderBy: { date: 'desc' },
@@ -461,10 +469,44 @@ async function getStudentContext(studentId) {
     const assignments = student.grades.filter(g => g.type === 'assignment');
     const projects = student.grades.filter(g => g.type === 'project');
 
+    // Build schedule summary (grouped by day)
+    const DAYS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    const schedulesByDay = {};
+    for (const schedule of student.class.schedules) {
+      const dayName = DAYS[schedule.dayOfWeek];
+      if (!schedulesByDay[dayName]) schedulesByDay[dayName] = [];
+      schedulesByDay[dayName].push({
+        time: `${schedule.startTime}-${schedule.endTime}`,
+        subject: schedule.subject?.name || 'Non spécifié',
+        type: schedule.type,
+        room: schedule.room || 'TBD',
+        teacher: schedule.teacherName || 'Non assigné'
+      });
+    }
+
+    const scheduleSummary = Object.entries(schedulesByDay)
+      .map(([day, sessions]) => {
+        const sessionList = sessions
+          .map(s => `  ${s.time} — ${s.subject} (${s.type}) — Salle ${s.room}`)
+          .join('\n');
+        return `**${day}:**\n${sessionList}`;
+      })
+      .join('\n\n');
+
+    // Identify exams in schedule (sessions with type 'exam')
+    const upcomingExams = student.class.schedules
+      .filter(s => s.type === 'exam')
+      .map(s => {
+        const dayName = DAYS[s.dayOfWeek];
+        return `- ${s.subject?.name || 'Examen'} — ${dayName} ${s.startTime}-${s.endTime} — Salle ${s.room || 'TBD'}`;
+      })
+      .join('\n');
+
     return {
       name: student.name,
       email: student.email,
       className: student.class.name,
+      classCode: student.class.code,
       department: student.class.department,
       attendanceRate,
       gradeAverage: gradeAvg,
@@ -476,7 +518,9 @@ async function getStudentContext(studentId) {
       assignmentCount: assignments.length,
       projectCount: projects.length,
       totalAbsences: totalAtt - presentCount,
-      totalSessions: totalAtt
+      totalSessions: totalAtt,
+      scheduleSummary,
+      upcomingExams
     };
   } catch (error) {
     console.error('Error fetching student context:', error);
@@ -502,6 +546,12 @@ ${studentCtx.examsSummary}
 
 ### Toutes les Notes par Matière
 ${studentCtx.gradesSummary || 'Aucune note disponible'}
+
+### Emploi du Temps - ${studentCtx.className}
+${studentCtx.scheduleSummary || 'Aucun emploi du temps disponible'}
+
+### Examens Programmés
+${studentCtx.upcomingExams || 'Aucun examen programmé'}
 `;
 }
 
@@ -514,15 +564,25 @@ function buildSystemPrompt(fullContext, studentCtx) {
   return `Tu es un assistant académique intelligent pour l'EMSI (École Marocaine des Sciences de l'Ingénieur).
 Tu aides les étudiants et le personnel avec toutes les questions relatives à la vie académique.
 
+## Tes Compétences
+✅ Accès à l'emploi du temps de la classe
+✅ Accès aux examens programmés
+✅ Accès aux notes et résultats académiques
+✅ Accès à l'historique de présence
+✅ Accès aux politiques académiques
+❌ JAMAIS accès aux mots de passe ou données sensibles
+
 ## Tes Règles
 1. **Réponds toujours dans la même langue que la question** (français ou anglais).
 2. **Sois précis et utile** : utilise les données du contexte ci-dessous pour répondre.
-3. **Quand l'étudiant pose une question sur ses notes, son assiduité ou sa situation personnelle**, utilise les données de son profil ci-dessous.
-4. **Ne cite pas tes sources**, intègre simplement la réponse naturellement.
-5. **Si l'information n'est pas dans le contexte**, dis-le honnêtement et suggère à qui s'adresser.
-6. **Sois amical et encourageant**. Utilise des emojis modérément.
-7. **Garde tes réponses concises** mais complètes (2-4 paragraphes max).
-8. **Si l'étudiant dit bonjour ou te salue**, réponds chaleureusement et propose ton aide.
+3. **Pour les questions sur l'emploi du temps ou les examens**, consulte systématiquement la section "Emploi du Temps" et "Examens Programmés" ci-dessous.
+4. **Quand l'étudiant demande s'il a un examen cette semaine**, regarde les examens programmés et donne une réponse précise avec jour et heure.
+5. **Quand l'étudiant pose une question sur ses notes, son assiduité ou sa situation personnelle**, utilise les données de son profil ci-dessous.
+6. **Ne cite pas tes sources**, intègre simplement la réponse naturellement.
+7. **Si l'information n'est pas dans le contexte**, dis-le honnêtement et suggère à qui s'adresser.
+8. **Sois amical et encourageant**. Utilise des emojis modérément.
+9. **Garde tes réponses concises** mais complètes (2-4 paragraphes max).
+10. **Si l'étudiant dit bonjour ou te salue**, réponds chaleureusement et propose ton aide.
 
 ${studentBlock}
 

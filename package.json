@@ -10,7 +10,11 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma migrate reset",
+    "scripts:help": "node scripts/index.js --help",
+    "scripts:verify": "node scripts/verify_schedules.js",
+    "scripts:generate": "node scripts/generate_schedules.js",
+    "scripts:test-auth": "node scripts/test_auth.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
